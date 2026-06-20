@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BenTech Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f0c20 0%, #15102a 100%);
+            --card-bg: rgba(25, 20, 50, 0.65);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f1fa;
+            --text-secondary: #948fa8;
+            --neon-cyan: #00f2fe;
+            --neon-purple: #9d4edd;
+            --neon-accent: #ff007f;
+            --success: #00e676;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 2px 10px rgba(0, 242, 254, 0.2));
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .main-container {
+                grid-template-columns: 1.1fr 0.9fr;
+            }
+        }
+
+        .calc-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Tabs Layout */
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.3rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.3rem;
+            border-radius: 14px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.6rem 0.2rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--neon-cyan);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .calc-panel {
+            display: none;
+        }
+
+        .calc-panel.active {
+            display: block;
+        }
+
+        /* Input Controls Layout */
+        .input-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .input-inline-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .input-style {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-style:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+        }
+
+        /* Classic Calc Grid Matrix Layout */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 14px;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--text-secondary);
+        }
+
+        .btn-action {
+            color: var(--neon-cyan);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            color: #0f0c20;
+            border: none;
+            font-weight: 700;
+        }
+
+        .btn-accent:hover {
+            opacity: 0.9;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        /* Vitals Digital Terminal Screen Display */
+        .screen-display {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            padding: 1.2rem;
+            min-height: 80px;
+            margin-bottom: 1.5rem;
+            text-align: right;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            word-wrap: break-word;
+        }
+
+        .screen-history {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+            min-height: 18px;
+        }
+
+        .screen-main {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            color: var(--neon-cyan);
+            font-weight: 700;
+        }
+
+        /* Real-Time Processing System Column Cards */
+        .steps-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 1.5rem;
+            max-height: 650px;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .steps-card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--neon-purple);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-block {
+            background: rgba(0, 0, 0, 0.15);
+            border-left: 3px solid var(--neon-cyan);
+            padding: 1rem;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .step-block h4 {
+            color: var(--neon-cyan);
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .formula {
+            font-family: 'Orbitron', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 0.4rem 0;
+            color: #fff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-accent));
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Floating Help Trigger Utility Action Button */
+        .help-fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            border: none;
+            color: #0f0c20;
+            font-size: 1.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+        }
+
+        .help-fab:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* Full page Info Overlay Portal Core Layout */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 7, 22, 0.98);
+            backdrop-filter: blur(30px);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .overlay-content {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90%, 85vh;
+            padding: 2.5rem;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+
+        .close-overlay {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            color: white;
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .close-overlay:hover {
+            background: var(--neon-accent);
+        }
+
+        .overlay-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .overlay-content h3 {
+            color: var(--neon-cyan);
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .overlay-content p, .overlay-content li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .overlay-content ul {
+            padding-left: 1.5rem;
+        }
+
+        /* Custom Scrollbar for steps */
+        .steps-card::-webkit-scrollbar, .overlay-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .steps-card::-webkit-scrollbar-track, .overlay-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .steps-card::-webkit-scrollbar-thumb, .overlay-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>BenTech</h1>
+        <p>Advanced Intelligence Calculator</p>
+    </header>
+
+    <div class="main-container">
+        <div class="calc-card">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('standard')">Standard</button>
+                <button class="tab-btn" onclick="switchTab('summary-stats')">Summary Stats</button>
+                <button class="tab-btn" onclick="switchTab('correlation')">Correlation</button>
+                <button class="tab-btn" onclick="switchTab('chisquare')">Chi-Square</button>
+            </div>
+
+            <div id="standard-panel" class="calc-panel active">
+                <div class="screen-display">
+                    <div id="history-screen" class="screen-history"></div>
+                    <div id="main-screen" class="screen-main">0</div>
+                </div>
+                <div class="grid-layout">
+                    <button class="btn btn-action" onclick="clearScreen()">C</button>
+                    <button class="btn btn-action" onclick="pressTrig('sin')">sin</button>
+                    <button class="btn btn-action" onclick="pressTrig('cos')">cos</button>
+                    <button class="btn btn-action" onclick="pressTrig('tan')">tan</button>
+                    
+                    <button class="btn" onclick="pressNum('7')">7</button>
+                    <button class="btn" onclick="pressNum('8')">8</button>
+                    <button class="btn" onclick="pressNum('9')">9</button>
+                    <button class="btn btn-action" onclick="pressOp('/')">/</button>
+
+                    <button class="btn" onclick="pressNum('4')">4</button>
+                    <button class="btn" onclick="pressNum('5')">5</button>
+                    <button class="btn" onclick="pressNum('6')">6</button>
+                    <button class="btn btn-action" onclick="pressOp('*')">*</button>
+
+                    <button class="btn" onclick="pressNum('1')">1</button>
+                    <button class="btn" onclick="pressNum('2')">2</button>
+                    <button class="btn" onclick="pressNum('3')">3</button>
+                    <button class="btn btn-action" onclick="pressOp('-')">-</button>
+
+                    <button class="btn" onclick="pressNum('0')">0</button>
+                    <button class="btn" onclick="pressNum('.')">.</button>
+                    <button class="btn btn-accent" onclick="calculateStandard()" style="grid-column: span 2;">=</button>
+                </div>
+            </div>
+
+            <div id="summary-stats-panel" class="calc-panel">
+                <div class="input-group">
+                    <label>Data Population Array (Separated by commas)</label>
+                    <input type="text" id="stats-data" class="input-style" placeholder="e.g. 12, 15, 23, 27, 34, 41, 45">
+                </div>
+                <div class="input-inline-row">
+                    <div class="input-group">
+                        <label>Decile Target (1 - 9)</label>
+                        <input type="number" id="stats-decile-val" class="input-style" value="5" min="1" max="9">
+                    </div>
+                    <div class="input-group">
+                        <label>Percentile Target (1 - 99)</label>
+                        <input type="number" id="stats-percentile-val" class="input-style" value="85" min="1" max="99">
+                    </div>
+                </div>
+                <button class="submit-btn" onclick="computeSummaryStats()">Run Comprehensive Analysis</button>
+            </div>
+
+            <div id="correlation-panel" class="calc-panel">
+                <div class="input-group">
+                    <label>X Data Points (Separated by commas)</label>
+                    <input type="text" id="corr-x" class="input-style" placeholder="e.g. 1, 2, 3, 4, 5">
+                </div>
+                <div class="input-group">
+                    <label>Y Data Points (Separated by commas)</label>
+                    <input type="text" id="corr-y" class="input-style" placeholder="e.g. 2, 4, 5, 4, 5">
+                </div>
+                <button class="submit-btn" onclick="computeCorrelation()">Run Correlation Analysis</button>
+            </div>
+
+            <div id="chisquare-panel" class="calc-panel">
+                <div class="input-group">
+                    <label>Observed Counts (Separated by commas)</label>
+                    <input type="text" id="chi-observed" class="input-style" placeholder="e.g. 15, 23, 33, 19">
+                </div>
+                <div class="input-group">
+                    <label>Expected Counts or Proportions (Optional)</label>
+                    <input type="text" id="chi-expected" class="input-style" placeholder="Leave blank for equal distribution">
+                </div>
+                <button class="submit-btn" onclick="computeChiSquare()">Run Chi-Square Test</button>
+            </div>
+        </div>
+
+        <div class="steps-card">
+            <h2>Processing Engine Steps</h2>
+            <div id="steps-output">
+                <div style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">
+                    Perform a calculation to see the manual step-by-step processing logic here.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="help-fab" onclick="toggleHelp(true)">?</button>
+
+    <div id="help-overlay" class="overlay">
+        <div class="overlay-content">
+            <button class="close-overlay" onclick="toggleHelp(false)">&times;</button>
+            <h2>BenTech System Documentation</h2>
+            <p>Welcome to BenTech. This terminal evaluates arithmetic equations and maps out manual linear step-by-step mathematical tracing pipelines directly inside your user client browser without backend processing bottlenecks.</p>
+            
+            <h3>1. Standard & Trigonometry Module</h3>
+            <p>Type arithmetic parameters using the visual terminal grid mapping array interface layout. For trigonometry calculations, enter your value inside the input box matching degrees format first, then hit <strong>sin</strong>, <strong>cos</strong>, or <strong>tan</strong>. The engine will instantly run your degree-to-radian vector conversion values sequentially.</p>
+
+            <h3>2. Summary Statistics Terminal</h3>
+            <p>Input single-dimension numerical groupings separated using pure comma characters (e.g. <code>10,20,30</code>). The computation algorithm processes variance variables dynamically via sample standard algorithms, calculates mean deviance models, and checks parameters for specific placement ranks:</p>
+            <ul>
+                <li><strong>Quartiles:</strong> Maps positions for 25% ($Q_1$), 50% ($Q_2$ Median), and 75% ($Q_3$).</li>
+                <li><strong>Deciles & Percentiles:</strong> Processes customized user targeted value criteria configurations using linear interpolation rules.</li>
+            </ul>
+
+            <h3>3. Correlation Analysis Matrix</h3>
+            <p>Supply equivalent sizing quantities across separate input strings for Data fields $X$ and $Y$. The calculator checks total variables sequentially to compute Pearson product-moment coefficients, matching calculated results against complete summary step distributions.</p>
+
+            <h3>4. Chi-Square Testing</h3>
+            <p>Pass observed frequency metrics into the observation column parameters. Leaving expected distributions empty defaults calculations to uniform variance spreads based on total dataset values.</p>
+        </div>
+    </div>
+
+    <script>
+        // Core Routing Architecture Tabs
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.calc-panel').forEach(panel => panel.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(`${tabName}-panel`).classList.add('active');
+        }
+
+        // Overlay Interactive Actions Toggle Routing
+        function toggleHelp(openState) {
+            const overlay = document.getElementById('help-overlay');
+            if (openState) overlay.classList.add('open');
+            else overlay.classList.remove('open');
+        }
+
+        // --- Standard Calculation Engine Logic ---
+        let currentInput = "0";
+        let historyInput = "";
+
+        function updateDisplay() {
+            document.getElementById('main-screen').innerText = currentInput;
+            document.getElementById('history-screen').innerText = historyInput;
+        }
+
+        function pressNum(num) {
+            if (currentInput === "0" && num !== ".") currentInput = num;
+            else currentInput += num;
+            updateDisplay();
+        }
+
+        function pressOp(op) {
+            currentInput += " " + op + " ";
+            updateDisplay();
+        }
+
+        function clearScreen() {
+            currentInput = "0";
+            historyInput = "";
+            updateDisplay();
+            document.getElementById('steps-output').innerHTML = `<div style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">Perform a calculation to see the manual step-by-step processing logic here.</div>`;
+        }
+
+        function calculateStandard() {
+            try {
+                let expression = currentInput;
+                let result = eval(expression);
+                historyInput = expression;
+                currentInput = String(result);
+                updateDisplay();
+
+                document.getElementById('steps-output').innerHTML = `
+                    <div class="step-block">
+                        <h4>Step 1: Parse Math Tokens</h4>
+                        <div class="formula">Input: ${expression}</div>
+                    </div>
+                    <div class="step-block">
+                        <h4>Step 2: Order of Operations Evaluation</h4>
+                        <div class="formula">Output Result = ${result}</div>
+                    </div>
+                `;
+            } catch (err) {
+                currentInput = "Error";
+                updateDisplay();
+            }
+        }
+
+        function pressTrig(type) {
+            try {
+                let val = parseFloat(currentInput);
+                if (isNaN(val)) return;
+                
+                let rad = val * (Math.PI / 180);
+                let result = 0;
+                if (type === 'sin') result = Math.sin(rad);
+                if (type === 'cos') result = Math.cos(rad);
+                if (type === 'tan') result = Math.tan(rad);
+
+                historyInput = `${type}(${val}°)`;
+                currentInput = String(result.toFixed(6));
+                updateDisplay();
+
+                document.getElementById('steps-output').innerHTML = `
+                    <div class="step-block">
+                        <h4>Step 1: Degree to Radian Transformation</h4>
+                        <div class="formula">Radians = ${val} &times; (&pi; / 180) = ${rad.toFixed(6)}</div>
+                    </div>
+                    <div class="step-block">
+                        <h4>Step 2: Compute Value</h4>
+                        <div class="formula">${type}(${rad.toFixed(6)} rad) = ${result.toFixed(6)}</div>
+                    </div>
+                `;
+            } catch(e) {
+                currentInput = "Error";
+                updateDisplay();
+            }
+        }
+
+        // --- Summary Statistics Multi-Threaded Engine Module Processing Logic ---
+        function computeSummaryStats() {
+            let rawInput = document.getElementById('stats-data').value;
+            let arr = rawInput.split(',').map(Number).filter(n => !isNaN(n));
+            
+            if (arr.length === 0) {
+                alert("Please provide valid numeric data groupings array inputs.");
+                return;
+            }
+
+            let n = arr.length;
+            
+            // Sort arrays accurately for rank metrics computation algorithms
+            let sortedArr = [...arr].sort((a, b) => a - b);
+
+            // 1. Mean
+            let sum = arr.reduce((a, b) => a + b, 0);
+            let mean = sum / n;
+
+            // 2. Mean Deviations Trace Log
+            let sumMeanDev = 0;
+            let devTraceHTML = "";
+            arr.forEach(val => {
+                let diff = Math.abs(val - mean);
+                sumMeanDev += diff;
+                devTraceHTML += `<li>|${val} - ${mean.toFixed(2)}| = ${diff.toFixed(2)}</li>`;
+            });
+            let meanDeviation = sumMeanDev / n;
+
+            // 3. Variance & Standard Deviations (Sample Variance Model Allocation)
+            let sumSqDev = 0;
+            arr.forEach(val => {
+                sumSqDev += Math.pow(val - mean, 2);
+            });
+            let variance = n > 1 ? sumSqDev / (n - 1) : 0;
+            let stdDev = Math.sqrt(variance);
+
+            // Helper for Rank Fractiles (Quartiles, Deciles, Percentiles via Linear Interpolation)
+            function getPercentile(p, sArr) {
+                let idx = (p / 100) * (sArr.length - 1);
+                let low = Math.floor(idx);
+                let high = Math.ceil(idx);
+                if (low === high) return sArr[low];
+                return sArr[low] + (idx - low) * (sArr[high] - sArr[low]);
+            }
+
+            let q1 = getPercentile(25, sortedArr);
+            let q2 = getPercentile(50, sortedArr); // Median
+            let q3 = getPercentile(75, sortedArr);
+
+            let dVal = parseInt(document.getElementById('stats-decile-val').value);
+            let pVal = parseInt(document.getElementById('stats-percentile-val').value);
+
+            let calculatedDecile = getPercentile(dVal * 10, sortedArr);
+            let calculatedPercentile = getPercentile(pVal, sortedArr);
+
+            // Inject Comprehensive Traced Math Markup Fields
+            document.getElementById('steps-output').innerHTML = `
+                <div class="step-block">
+                    <h4>Step 1: Sorted Dataset Array Mapping</h4>
+                    <p>Ordered Sequence structure configuration setup:</p>
+                    <p class="formula">${sortedArr.join(', ')}</p>
+                </div>
+                <div class="step-block">
+                    <h4>Step 2: Arithmetic Mean Evaluation</h4>
+                    <div class="formula">&mu; = &Sigma;X / n</div>
+                    <p>Mean = ${sum} / ${n} = <strong>${mean.toFixed(4)}</strong></p>
+                </div>
+                <div class="step-block">
+                    <h4>Step 3: Mean Absolute Deviation (M.D.) Calculation</h4>
+                    <div class="formula">M.D. = &Sigma;|X - &mu;| / n</div>
+                    <p>Sum of Deviations = ${sumMeanDev.toFixed(4)}</p>
+                    <p>M.D. = ${sumMeanDev.toFixed(4)} / ${n} = <strong>${meanDeviation.toFixed(4)}</strong></p>
+                </div>
+                <div class="step-block">
+                    <h4>Step 4: Dispersion Metrics (Variance & SD)</h4>
+                    <div class="formula">Sample Variance (s²) = &Sigma;(X - &mu;)² / (n - 1)</div>
+                    <p>Sum of Squared Deviations = ${sumSqDev.toFixed(4)}</p>
+                    <p>s² = ${sumSqDev.toFixed(4)} / ${n - 1} = <strong>${variance.toFixed(4)}</strong></p>
+                    <div class="formula">Standard Deviation (s) = &radic;s²</div>
+                    <p>s = &radic;${variance.toFixed(4)} = <strong>${stdDev.toFixed(4)}</strong></p>
+                </div>
+                <div class="step-block" style="border-left-color: var(--success);">
+                    <h4>Step 5: Rank Quantile Boundaries Processing</h4>
+                    <p><strong>Quartiles:</strong></p>
+                    <ul>
+                        <li>Q₁ (25th Percentile) = <strong>${q1.toFixed(2)}</strong></li>
+                        <li>Q₂ (Median / 50th) = <strong>${q2.toFixed(2)}</strong></li>
+                        <li>Q₃ (75th Percentile) = <strong>${q3.toFixed(2)}</strong></li>
+                    </ul>
+                    <p style="margin-top:0.5rem;"><strong>Targeted Splice Ranks:</strong></p>
+                    <ul>
+                        <li>Decile D<sub>${dVal}</sub> (Index ${dVal * 10}%) = <strong>${calculatedDecile.toFixed(2)}</strong></li>
+                        <li>Percentile P<sub>${pVal}</sub> = <strong>${calculatedPercentile.toFixed(2)}</strong></li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        // --- Pearson Correlation Engine Logic ---
+        function computeCorrelation() {
+            let xRaw = document.getElementById('corr-x').value.split(',').map(Number);
+            let yRaw = document.getElementById('corr-y').value.split(',').map(Number);
+
+            if (xRaw.length !== yRaw.length || xRaw.length === 0 || isNaN(xRaw[0])) {
+                alert("Data arrays must be perfectly uniform and cannot contain empty parameters.");
+                return;
+            }
+
+            let n = xRaw.length;
+            let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0, sumY2 = 0;
+
+            for(let i=0; i<n; i++) {
+                sumX += xRaw[i];
+                sumY += yRaw[i];
+                sumXY += xRaw[i] * yRaw[i];
+                sumX2 += xRaw[i] * xRaw[i];
+                sumY2 += yRaw[i] * yRaw[i];
+            }
+
+            let num = (n * sumXY) - (sumX * sumY);
+            let den1 = (n * sumX2) - (sumX * sumX);
+            let den2 = (n * sumY2) - (sumY * sumY);
+            let den = Math.sqrt(den1 * den2);
+            let r = den === 0 ? 0 : num / den;
+
+            document.getElementById('steps-output').innerHTML = `
+                <div class="step-block">
+                    <h4>Step 1: Compute Base Sums</h4>
+                    <p>n = ${n}</p>
+                    <p>&Sigma;X = ${sumX} | &Sigma;Y = ${sumY}</p>
+                    <p>&Sigma;XY = ${sumXY}</p>
+                    <p>&Sigma;X² = ${sumX2} | &Sigma;Y² = ${sumY2}</p>
+                </div>
+                <div class="step-block">
+                    <h4>Step 2: Apply Pearson Product-Moment Formula</h4>
+                    <div class="formula">Numerator = (n&Sigma;XY) - (&Sigma;X&Sigma;Y)</div>
+                    <p>= (${n} &times; ${sumXY}) - (${sumX} &times; ${sumY}) = <strong>${num}</strong></p>
+                    <div class="formula">Denominator = &radic;[(n&Sigma;X² - (&Sigma;X)²)(n&Sigma;Y² - (&Sigma;Y)²)]</div>
+                    <p>= &radic;[(${den1}) &times; (${den2})] = <strong>${den.toFixed(4)}</strong></p>
+                </div>
+                <div class="step-block" style="border-left-color: var(--success);">
+                    <h4>Final Evaluation Output</h4>
+                    <p>r = ${num} / ${den.toFixed(4)}</p>
+                    <div class="formula" style="color: var(--success)">r = ${r.toFixed(5)}</div>
+                </div>
+            `;
+        }
+
+        // --- Chi-Square Variant Architecture Logic ---
+        function computeChiSquare() {
+            let observed = document.getElementById('chi-observed').value.split(',').map(Number);
+            if(observed.length === 0 || isNaN(observed[0])) {
+                alert("Provide numeric observed tracking configurations.");
+                return;
+            }
+
+            let totalObserved = observed.reduce((a,b) => a+b, 0);
+            let expected = [];
+            let expRaw = document.getElementById('chi-expected').value;
+
+            if(expRaw.trim() === "") {
+                let uniformValue = totalObserved / observed.length;
+                expected = Array(observed.length).fill(uniformValue);
+            } else {
+                expected = expRaw.split(',').map(Number);
+            }
+
+            if(expected.length !== observed.length) {
+                alert("Observed configurations metrics mismatch against Expected tracking rows.");
+                return;
+            }
+
+            let chiSquareResult = 0;
+            let stepsMarkup = "";
+
+            observed.forEach((obs, idx) => {
+                let exp = expected[idx];
+                let diff = obs - exp;
+                let sq = diff * diff;
+                let component = sq / exp;
+                chiSquareResult += component;
+
+                stepsMarkup += `
+                    <tr>
+                        <td style="padding:5px; border-bottom:1px solid rgba(255,255,255,0.05)">${obs}</td>
+                        <td style="padding:5px; border-bottom:1px solid rgba(255,255,255,0.05)">${exp.toFixed(2)}</td>
+                        <td style="padding:5px; border-bottom:1px solid rgba(255,255,255,0.05)">${component.toFixed(4)}</td>
+                    </tr>
+                `;
+            });
+
+            let df = observed.length - 1;
+
+            document.getElementById('steps-output').innerHTML = `
+                <div class="step-block">
+                    <h4>Step 1: Matrix Evaluation Allocation Table</h4>
+                    <table style="width:100%; text-align:left; font-size:0.85rem;">
+                        <thead>
+                            <tr style="color: var(--neon-cyan)">
+                                <th>O</th><th>E</th><th>(O-E)² / E</th>
+                            </tr>
+                        </thead>
+                        <tbody>${stepsMarkup}</tbody>
+                    </table>
+                </div>
+                <div class="step-block">
+                    <h4>Step 2: Sigma Cumulative Evaluation</h4>
+                    <div class="formula">&chi;² = &Sigma;[(O - E)² / E]</div>
+                    <p>Degrees of Freedom (df) = k - 1 = <strong>${df}</strong></p>
+                </div>
+                <div class="step-block" style="border-left-color: var(--success);">
+                    <h4>Final Test Output Summary</h4>
+                    <div class="formula" style="color: var(--success)">&chi;² = ${chiSquareResult.toFixed(5)}</div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
+
