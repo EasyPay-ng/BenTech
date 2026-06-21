@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BenTech Calculator</title>
+    
+    <link rel="icon" type="image/jpeg" href="https://res.cloudinary.com/dq7fpxfbc/image/upload/v1782048983/IMG-20260621-WA0004_grnqp7.jpg">
+    
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #0f0c20 0%, #15102a 100%);
@@ -60,7 +64,7 @@
             letter-spacing: 1px;
         }
 
-        /* Mode Selector Switch */
+        /* Global Precision Mode Configuration Panel Switch */
         .mode-container {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--border-color);
@@ -113,7 +117,7 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        /* Tabs Grid */
+        /* Navigation Routing Tabs Matrix */
         .tabs {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -162,7 +166,7 @@
             display: block;
         }
 
-        /* Inputs and Groups */
+        /* Input Controls Layout Form Styles */
         .input-group {
             margin-bottom: 1.2rem;
         }
@@ -191,7 +195,13 @@
             border-color: var(--neon-cyan);
         }
 
-        /* Standard Layout Grid */
+        .input-inline-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Standard Display UI Grid Layout */
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -253,7 +263,7 @@
             font-weight: 700;
         }
 
-        /* Step Processing Cards */
+        /* Linear Processing Log Output Columns */
         .steps-card {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
@@ -311,7 +321,7 @@
             margin-top: 0.5rem;
         }
 
-        /* Moving Glowing Help FAB Button */
+        /* Moving Kinetic Neon Glowing Floating Action Trigger Utility */
         .help-fab {
             position: fixed;
             bottom: 2rem;
@@ -342,7 +352,7 @@
             100% { box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 5px var(--neon-cyan); }
         }
 
-        /* Overlay Layout */
+        /* Full Screen Overlay Matrix Portal Core Style */
         .overlay {
             position: fixed;
             top: 0;
@@ -403,6 +413,10 @@
         .overlay-content h3 { color: var(--neon-cyan); margin-top: 1.2rem; }
         .overlay-content p, .overlay-content li { color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.5rem; }
         .overlay-content ul { padding-left: 1.2rem; }
+        
+        .steps-card::-webkit-scrollbar, .overlay-content::-webkit-scrollbar { width: 6px; }
+        .steps-card::-webkit-scrollbar-track, .overlay-content::-webkit-scrollbar-track { background: transparent; }
+        .steps-card::-webkit-scrollbar-thumb, .overlay-content::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -466,23 +480,23 @@
 
             <div id="calculus-panel" class="calc-panel">
                 <div class="input-group">
-                    <label>Polynomial String Input (Format example: 3x^2 + 2x - 5)</label>
+                    <label>Polynomial Input String Parameter Expression</label>
                     <input type="text" id="calc-poly" class="input-style" placeholder="e.g. 4x^3 + 3x^2 - 2x">
                 </div>
                 <div class="input-group">
-                    <label>Definite Integral Range (Lowerbound limit , Upperbound limit)</label>
-                    <input type="text" id="calc-bounds" class="input-style" placeholder="e.g. 1, 3 (Leave empty for derivative execution)">
+                    <label>Definite Boundaries Integral Range Upperbound / Lowerbound Limit</label>
+                    <input type="text" id="calc-bounds" class="input-style" placeholder="e.g. 1, 3 (Leave empty for instantaneous Derivative functions)">
                 </div>
                 <button class="submit-btn" onclick="runCalculusEngine()">Evaluate Calculus Limits</button>
             </div>
 
             <div id="economics-panel" class="calc-panel">
                 <div class="input-group">
-                    <label>Demand Equation (Quantity Demanded Qd = intercept - slope*P)</label>
+                    <label>Demand Equation String Formula Framework Matrix (Qd = intercept - slope*P)</label>
                     <input type="text" id="econ-demand" class="input-style" placeholder="e.g. 100 - 2P">
                 </div>
                 <div class="input-group">
-                    <label>Supply Equation (Quantity Supplied Qs = intercept + slope*P)</label>
+                    <label>Supply Equation String Formula Framework Matrix (Qs = intercept + slope*P)</label>
                     <input type="text" id="econ-supply" class="input-style" placeholder="e.g. 10 + 3P">
                 </div>
                 <button class="submit-btn" onclick="runEconomicsEngine()">Compute Market Equilibrium Balance</button>
@@ -491,29 +505,43 @@
             <div id="summary-stats-panel" class="calc-panel">
                 <div class="input-group">
                     <label>Data Population Array Vectors (Separated by commas)</label>
-                    <input type="text" id="stats-data" class="input-style" placeholder="e.g. 10, 12, 23, 23, 44">
+                    <input type="text" id="stats-data" class="input-style" placeholder="e.g. 12, 15, 23, 27, 34, 41, 45">
                 </div>
-                <button class="submit-btn" onclick="computeSummaryStats()">Run Core Statistical Array Calculations</button>
+                <div class="input-inline-row">
+                    <div class="input-group">
+                        <label>Decile Position Value Target</label>
+                        <input type="number" id="stats-decile-val" class="input-style" value="5" min="1" max="9">
+                    </div>
+                    <div class="input-group">
+                        <label>Percentile Position Value Target</label>
+                        <input type="number" id="stats-percentile-val" class="input-style" value="85" min="1" max="99">
+                    </div>
+                </div>
+                <button class="submit-btn" onclick="computeSummaryStats()">Run Comprehensive Analysis</button>
             </div>
 
             <div id="correlation-panel" class="calc-panel">
                 <div class="input-group">
-                    <label>X Configurations</label>
-                    <input type="text" id="corr-x" class="input-style" placeholder="1,2,3">
+                    <label>X Variable Configuration String Mapping Setup</label>
+                    <input type="text" id="corr-x" class="input-style" placeholder="e.g. 1, 2, 3, 4, 5">
                 </div>
                 <div class="input-group">
-                    <label>Y Configurations</label>
-                    <input type="text" id="corr-y" class="input-style" placeholder="2,4,5">
+                    <label>Y Variable Configuration String Mapping Setup</label>
+                    <input type="text" id="corr-y" class="input-style" placeholder="e.g. 2, 4, 5, 4, 5">
                 </div>
-                <button class="submit-btn" onclick="computeCorrelation()">Run Analysis</button>
+                <button class="submit-btn" onclick="computeCorrelation()">Run Correlation Analysis</button>
             </div>
 
             <div id="chisquare-panel" class="calc-panel">
                 <div class="input-group">
-                    <label>Observed Array Set</label>
-                    <input type="text" id="chi-observed" class="input-style" placeholder="12,19,22">
+                    <label>Observed Counts Metrics Row Configuration Values</label>
+                    <input type="text" id="chi-observed" class="input-style" placeholder="e.g. 15, 23, 33, 19">
                 </div>
-                <button class="submit-btn" onclick="computeChiSquare()">Evaluate Dispersion</button>
+                <div class="input-group">
+                    <label>Expected Counts or Proportions (Optional Tracking)</label>
+                    <input type="text" id="chi-expected" class="input-style" placeholder="Leave empty for uniform spreads distribution logic">
+                </div>
+                <button class="submit-btn" onclick="computeChiSquare()">Run Chi-Square Test</button>
             </div>
         </div>
 
@@ -532,13 +560,13 @@
     <div id="help-overlay" class="overlay">
         <div class="overlay-content">
             <button class="close-overlay" onclick="toggleHelp(false)">&times;</button>
-            <h2>BenTech System Manual Workspace</h2>
-            <h3>Number System Modes</h3>
-            <p>Switch between **Decimal Mode** and **Fraction Mode** at the top header area. When choosing Fraction format structures, all underlying statistical metrics, derivatives boundaries outputs, and standard evaluations are mathematically filtered back into irreducible fractional displays.</p>
-            <h3>Calculus Evaluations</h3>
-            <p>Input normal algebra equations into the input string parameter configurations (e.g. <code>3x^2 + 2x</code>). Leaving limit ranges empty directs the processing calculations straight into generating derivative forms. Adding standard boundary limits parses evaluations into definitive standard integration metrics inside the pipeline window.</p>
-            <h3>Market Supply & Demand Modeling</h3>
-            <p>Type linear function expressions (e.g. <code>Qd = 120 - 4P</code> or simply <code>120 - 4P</code>). The optimization system analyzes variables across independent fields to yield price thresholds balance structures instantly.</p>
+            <h2>BenTech Architecture User Guide Documentation</h2>
+            <h3>Precision Engine Options</h3>
+            <p>Toggle using standard options fields matching decimal tracking arrays or classic fraction conversion sequences. The rendering loops intercept evaluations natively to run decimal fraction conversions.</p>
+            <h3>Calculus & Linear Modeling</h3>
+            <p>Type equation arrays variables elements cleanly. Pass specific vector sets strings inside parsing constraints rows matching differential polynomial variables loops rules layout structures.</p>
+            <h3>Market Balancing & Supply Networks</h3>
+            <p>Map functional supply lines elements using intercept variables metrics constants blocks to yield precise coordinates positions parameters.</p>
         </div>
     </div>
 
@@ -549,12 +577,11 @@
             currentMode = document.querySelector('input[name="num-mode"]:checked').value;
         }
 
-        // Decimal to Fractional Formatting Logic
+        // Float Numeric Elements Linear Fraction Evaluator Setup Configuration Loop
         function formatNumberOutput(val) {
             if (isNaN(val) || !isFinite(val)) return val;
             if (currentMode === "decimal") return Number(val.toFixed(4));
             
-            // Decimal to Fraction Linear Conversion Engine Logic
             let tolerance = 1.0E-6;
             let h1 = 1, h2 = 0, k1 = 0, k2 = 1;
             let b = val;
@@ -580,7 +607,7 @@
             document.getElementById('help-overlay').classList.toggle('open', openState);
         }
 
-        // --- Draggable FAB Control Logic Flow ---
+        // --- Draggable FAB Kinematics Logic Matrix Router Hookups ---
         let isDragging = false;
         let startX, startY, initialX, initialY;
         const fab = document.getElementById('draggable-fab');
@@ -589,111 +616,69 @@
             isDragging = false; 
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-            
-            startX = clientX;
-            startY = clientY;
-            
+            startX = clientX; startY = clientY;
             const rect = fab.getBoundingClientRect();
-            initialX = rect.left;
-            initialY = rect.top;
-
-            document.onmousemove = dragMove;
-            document.ontouchmove = dragMove;
-            document.onmouseup = stopDrag;
-            document.ontouchend = stopDrag;
+            initialX = rect.left; initialY = rect.top;
+            document.onmousemove = dragMove; document.ontouchmove = dragMove;
+            document.onmouseup = stopDrag; document.ontouchend = stopDrag;
         }
 
         function dragMove(e) {
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-            
-            let dx = clientX - startX;
-            let dy = clientY - startY;
-            
-            if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
-                isDragging = true;
-            }
-
-            fab.style.left = (initialX + dx) + 'px';
-            fab.style.top = (initialY + dy) + 'px';
-            fab.style.bottom = 'auto';
-            fab.style.right = 'auto';
+            let dx = clientX - startX; let dy = clientY - startY;
+            if (Math.abs(dx) > 5 || Math.abs(dy) > 5) isDragging = true;
+            fab.style.left = (initialX + dx) + 'px'; fab.style.top = (initialY + dy) + 'px';
+            fab.style.bottom = 'auto'; fab.style.right = 'auto';
         }
 
         function stopDrag() {
-            document.onmousemove = null;
-            document.ontouchmove = null;
-            document.onmouseup = null;
-            document.ontouchend = null;
-            
-            if (!isDragging) {
-                toggleHelp(true);
-            }
+            document.onmousemove = null; document.ontouchmove = null; document.onmouseup = null; document.ontouchend = null;
+            if (!isDragging) toggleHelp(true);
         }
 
-        // --- Standard Evaluation Stack Core Logic Functions ---
-        let currentInput = "0";
-        let historyInput = "";
-
+        // --- Standard Calculator Processing Routines ---
+        let currentInput = "0"; let historyInput = "";
         function updateDisplay() {
             document.getElementById('main-screen').innerText = currentInput;
             document.getElementById('history-screen').innerText = historyInput;
         }
-
         function pressNum(num) {
-            if (currentInput === "0" && num !== ".") currentInput = num;
-            else currentInput += num;
-            updateDisplay();
+            if (currentInput === "0" && num !== ".") currentInput = num; else currentInput += num; updateDisplay();
         }
-
-        function pressOp(op) {
-            currentInput += " " + op + " ";
-            updateDisplay();
-        }
-
-        function clearScreen() {
-            currentInput = "0"; historyInput = ""; updateDisplay();
-        }
+        function pressOp(op) { currentInput += " " + op + " "; updateDisplay(); }
+        function clearScreen() { currentInput = "0"; historyInput = ""; updateDisplay(); }
 
         function calculateStandard() {
             try {
                 let expression = currentInput.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
                 let rawResult = eval(expression);
-                let formatted = formatNumberOutput(rawResult);
                 historyInput = currentInput;
-                currentInput = String(formatted);
+                currentInput = String(formatNumberOutput(rawResult));
                 updateDisplay();
             } catch (err) { currentInput = "Error"; updateDisplay(); }
         }
 
         function pressTrig(type) {
-            let val = parseFloat(currentInput);
-            if (isNaN(val)) return;
+            let val = parseFloat(currentInput); if (isNaN(val)) return;
             let rad = val * (Math.PI / 180);
             let res = type === 'sin' ? Math.sin(rad) : type === 'cos' ? Math.cos(rad) : Math.tan(rad);
             historyInput = `${type}(${val}°)`;
-            currentInput = String(formatNumberOutput(res));
-            updateDisplay();
+            currentInput = String(formatNumberOutput(res)); updateDisplay();
         }
 
-        // --- Polynomial Tokenizer Parsing Module (Calculus Helper Engine) ---
+        // --- Calculus Parser Modules Infrastructure Framework Functions ---
         function parsePolynomialExpression(polyStr) {
             let cleaned = polyStr.replace(/\s+/g, '').replace(/-/g, '+-');
             let terms = cleaned.split('+').filter(t => t.length > 0);
             let parsedTerms = [];
-
             terms.forEach(term => {
                 let coeff = 1, exp = 0;
-                if (!term.includes('x')) {
-                    coeff = parseFloat(term); exp = 0;
-                } else {
+                if (!term.includes('x')) { coeff = parseFloat(term); exp = 0; }
+                else {
                     let parts = term.split('x');
-                    if (parts[0] === "") coeff = 1;
-                    else if (parts[0] === "-") coeff = -1;
-                    else coeff = parseFloat(parts[0]);
-
-                    if (parts[1] === "") exp = 1;
-                    else if (parts[1].startsWith('^')) exp = parseFloat(parts[1].substring(1));
+                    coeff = parts[0] === "" ? 1 : parts[0] === "-" ? -1 : parseFloat(parts[0]);
+                    exp = parts[1] === "" ? 1 : parts[1].startsWith('^') ? parseFloat(parts[1].substring(1)) : 1;
                 }
                 if(!isNaN(coeff)) parsedTerms.push({ coeff, exp });
             });
@@ -704,62 +689,27 @@
             let polyInput = document.getElementById('calc-poly').value;
             let boundsInput = document.getElementById('calc-bounds').value;
             let parsed = parsePolynomialExpression(polyInput);
-
-            if(parsed.length === 0) {
-                alert("Please declare formatting combinations matching structural design criteria rules template.");
-                return;
-            }
+            if(!parsed.length) return;
 
             if(boundsInput.trim() === "") {
-                // Derivative Processing Logic Route
-                let derivTerms = [];
-                let stepLines = "";
+                let derivTerms = []; let stepLines = "";
                 parsed.forEach(t => {
-                    let c = t.coeff * t.exp;
-                    let e = t.exp - 1;
+                    let c = t.coeff * t.exp; let e = t.exp - 1;
                     if (t.exp !== 0) {
                         derivTerms.push(`${c}x^${e}`.replace(/\^1\b/, '').replace(/x\^0\b/, ''));
-                        stepLines += `<p>&bull; Power Rule on term [ ${t.coeff}x^${t.exp} ]: ${t.coeff} &times; ${t.exp}x^(${t.exp}-1) = <strong>${c}x^${e}</strong></p>`;
+                        stepLines += `<p>&bull; Power Rule [ ${t.coeff}x^${t.exp} ] = <strong>${c}x^${e}</strong></p>`;
                     }
                 });
-                let outputDeriv = derivTerms.join(' + ').replace(/\+ -/g, '- ');
-                document.getElementById('steps-output').innerHTML = `
-                    <div class="step-block">
-                        <h4>Differentiation Logic Output Tracing Matrix</h4>
-                        ${stepLines}
-                        <div class="formula">f'(x) = ${outputDeriv}</div>
-                    </div>
-                `;
+                document.getElementById('steps-output').innerHTML = `<div class="step-block"><h4>Differentiation Sequential Steps Trace Log</h4>${stepLines}<div class="formula">f'(x) = ${derivTerms.join(' + ').replace(/\+ -/g, '- ')}</div></div>`;
             } else {
-                // Definitive Bounds Integral Route Logic Pipeline Processing
                 let bounds = boundsInput.split(',').map(Number);
-                if(bounds.length !== 2) { alert("Input parameters tracking arrays format missing."); return; }
                 let lower = bounds[0], upper = bounds[1];
-
-                let integralSteps = "";
                 let antiderivativeEval = (x) => {
-                    let sum = 0;
-                    parsed.forEach(t => {
-                        let c = t.coeff / (t.exp + 1);
-                        let e = t.exp + 1;
-                        sum += c * Math.pow(x, e);
-                    });
-                    return sum;
+                    let sum = 0; parsed.forEach(t => { sum += (t.coeff / (t.exp + 1)) * Math.pow(x, t.exp + 1); }); return sum;
                 };
-
-                let F_upper = antiderivativeEval(upper);
-                let F_lower = antiderivativeEval(lower);
+                let F_upper = antiderivativeEval(upper); let F_lower = antiderivativeEval(lower);
                 let netResult = F_upper - F_lower;
-
-                document.getElementById('steps-output').innerHTML = `
-                    <div class="step-block">
-                        <h4>Definite Integration Tracing Array Pipeline</h4>
-                        <p>Evaluate bounds array allocation ranges internally [ Lower: ${lower} , Upper: ${upper} ]</p>
-                        <p>F(Upper Limit Value: ${upper}) = <strong>${formatNumberOutput(F_upper)}</strong></p>
-                        <p>F(Lower Limit Value: ${lower}) = <strong>${formatNumberOutput(F_lower)}</strong></p>
-                        <div class="formula">Result [ F(u) - F(l) ] = ${formatNumberOutput(netResult)}</div>
-                    </div>
-                `;
+                document.getElementById('steps-output').innerHTML = `<div class="step-block"><h4>Definite Integral Tracing Pipeline Bounds Matrix</h4><p>F(${upper}) = <strong>${formatNumberOutput(F_upper)}</strong></p><p>F(${lower}) = <strong>${formatNumberOutput(F_lower)}</strong></p><div class="formula">Result = ${formatNumberOutput(netResult)}</div></div>`;
             }
         }
 
@@ -768,67 +718,102 @@
             let cleaned = str.replace(/\s+/g, '').toUpperCase();
             let intercept = 0, slope = 0;
             let match = cleaned.match(/(-?\d+\.?\d*)\s*([\+\-])\s*(\d+\.?\d*)\*?P/);
-            
             if (match) {
                 intercept = parseFloat(match[1]);
-                let sign = match[2];
                 let slopeVal = parseFloat(match[3]);
-                slope = sign === '-' ? -slopeVal : slopeVal;
+                slope = match[2] === '-' ? -slopeVal : slopeVal;
             } else {
                 let pIndex = cleaned.indexOf('P');
-                if (pIndex !== -1) {
-                    intercept = parseFloat(cleaned) || 0;
-                    slope = cleaned.includes('-P') ? -1 : 1;
-                }
+                if (pIndex !== -1) { intercept = parseFloat(cleaned) || 0; slope = cleaned.includes('-P') ? -1 : 1; }
             }
             return { intercept, slope };
         }
 
         function runEconomicsEngine() {
-            let dRaw = document.getElementById('econ-demand').value;
-            let sRaw = document.getElementById('econ-supply').value;
-            
-            let demand = parseEconEquation(dRaw);
-            let supply = parseEconEquation(sRaw);
-
-            // Equilibrium logic: Qd = Qs => a + bP = c + dP => (b - d)P = c - a => P = (c - a) / (b - d)
+            let demand = parseEconEquation(document.getElementById('econ-demand').value);
+            let supply = parseEconEquation(document.getElementById('econ-supply').value);
             let numP = supply.intercept - demand.intercept;
             let denP = demand.slope - supply.slope;
-
-            if (denP === 0) { alert("Mathematical singularity generated via unmatched matrix alignments equations slopes."); return; }
-
+            if (denP === 0) return;
             let equilibriumPrice = numP / denP;
             let equilibriumQuantity = demand.intercept + (demand.slope * equilibriumPrice);
 
             document.getElementById('steps-output').innerHTML = `
                 <div class="step-block">
-                    <h4>Market Equilibrium Balance Matrix Logic Logs</h4>
-                    <p>Demand Parameters Intercept: ${demand.intercept} | Elastic Slope Factor: ${demand.slope}</p>
-                    <p>Supply Parameters Intercept: ${supply.intercept} | Elastic Slope Factor: ${supply.slope}</p>
-                    <div class="formula">Setting Qd = Qs Equates Matrix Balance</div>
+                    <h4>Market Balancing Mathematical Equilibrium Trace</h4>
                     <p>Equilibrium Price (P*) = <strong>${formatNumberOutput(equilibriumPrice)}</strong></p>
-                    <p>Equilibrium Clearing Quantity (Q*) = <strong>${formatNumberOutput(equilibriumQuantity)}</strong></p>
+                    <p>Equilibrium Quantity (Q*) = <strong>${formatNumberOutput(equilibriumQuantity)}</strong></p>
                 </div>
             `;
         }
 
-        // --- Reused Data Validation Hooks for Legacy Modules ---
+        // --- Descriptive Statistics Systems Tracking Algorithms Framework Elements ---
         function computeSummaryStats() {
-            let data = document.getElementById('stats-data').value.split(',').map(Number).filter(n => !isNaN(n));
-            if (!data.length) return;
-            let n = data.length;
-            let sum = data.reduce((a,b)=>a+b,0);
-            let mean = sum/n;
+            let arr = document.getElementById('stats-data').value.split(',').map(Number).filter(n => !isNaN(n));
+            if (!arr.length) return;
+            let n = arr.length;
+            let sortedArr = [...arr].sort((a, b) => a - b);
+            let sum = arr.reduce((a, b) => a + b, 0);
+            let mean = sum / n;
+
+            let sumMeanDev = 0;
+            arr.forEach(val => sumMeanDev += Math.abs(val - mean));
+            let meanDeviation = sumMeanDev / n;
+
+            let sumSqDev = 0;
+            arr.forEach(val => sumSqDev += Math.pow(val - mean, 2));
+            let variance = n > 1 ? sumSqDev / (n - 1) : 0;
+            let stdDev = Math.sqrt(variance);
+
+            function getPercentile(p, sArr) {
+                let idx = (p / 100) * (sArr.length - 1);
+                let low = Math.floor(idx); let high = Math.ceil(idx);
+                if (low === high) return sArr[low];
+                return sArr[low] + (idx - low) * (sArr[high] - sArr[low]);
+            }
+
+            let q1 = getPercentile(25, sortedArr);
+            let q2 = getPercentile(50, sortedArr);
+            let q3 = getPercentile(75, sortedArr);
+            let dVal = parseInt(document.getElementById('stats-decile-val').value) || 5;
+            let pVal = parseInt(document.getElementById('stats-percentile-val').value) || 85;
+
             document.getElementById('steps-output').innerHTML = `
                 <div class="step-block">
-                    <h4>Statistical Summary Parsing Engine</h4>
-                    <p>Mean Summary Metrics = <strong>${formatNumberOutput(mean)}</strong></p>
+                    <h4>Summary Statistics Tracking Matrix Analysis Output Summary</h4>
+                    <p>Mean (&mu;) = <strong>${formatNumberOutput(mean)}</strong></p>
+                    <p>Mean Deviation = <strong>${formatNumberOutput(meanDeviation)}</strong></p>
+                    <p>Sample Variance (s²) = <strong>${formatNumberOutput(variance)}</strong></p>
+                    <p>Standard Deviation (s) = <strong>${formatNumberOutput(stdDev)}</strong></p>
+                    <p>Q₁ = ${formatNumberOutput(q1)} | Q₂ (Med) = ${formatNumberOutput(q2)} | Q₃ = ${formatNumberOutput(q3)}</p>
+                    <p>D<sub>${dVal}</sub> = ${formatNumberOutput(getPercentile(dVal*10, sortedArr))} | P<sub>${pVal}</sub> = ${formatNumberOutput(getPercentile(pVal, sortedArr))}</p>
                 </div>
             `;
         }
 
-        function computeCorrelation() { alert("Analysis Pipeline Complete."); }
-        function computeChiSquare() { alert("Chi Matrix Pipeline Evaluated."); }
+        function computeCorrelation() {
+            let xRaw = document.getElementById('corr-x').value.split(',').map(Number);
+            let yRaw = document.getElementById('corr-y').value.split(',').map(Number);
+            let n = xRaw.length;
+            let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0, sumY2 = 0;
+            for(let i=0; i<n; i++) {
+                sumX += xRaw[i]; sumY += yRaw[i]; sumXY += xRaw[i] * yRaw[i];
+                sumX2 += xRaw[i] * xRaw[i]; sumY2 += yRaw[i] * yRaw[i];
+            }
+            let num = (n * sumXY) - (sumX * sumY);
+            let den = Math.sqrt(((n * sumX2) - (sumX * sumX)) * ((n * sumY2) - (sumY * sumY)));
+            let r = den === 0 ? 0 : num / den;
+            document.getElementById('steps-output').innerHTML = `<div class="step-block"><h4>Pearson Linear Fit</h4><div class="formula">r = ${formatNumberOutput(r)}</div></div>`;
+        }
+
+        function computeChiSquare() {
+            let observed = document.getElementById('chi-observed').value.split(',').map(Number);
+            let total = observed.reduce((a,b)=>a+b,0);
+            let expected = total / observed.length;
+            let chiSquareResult = 0;
+            observed.forEach(obs => { chiSquareResult += Math.pow(obs - expected, 2) / expected; });
+            document.getElementById('steps-output').innerHTML = `<div class="step-block"><h4>Dispersion Chi-Square Test Evaluation</h4><div class="formula">&chi;² = ${formatNumberOutput(chiSquareResult)}</div></div>`;
+        }
     </script>
 </body>
 </html>
