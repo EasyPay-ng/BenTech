@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stark Technologies | Full-Stack Web Development</title>
+    <link rel="icon" type="image/jpeg" href="https://res.cloudinary.com/dq7fpxfbc/image/upload/v1774094269/logo2_ago4ay.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary: #0a0a0a;
-            --secondary: #111111;
-            --accent: #00d4ff;
-            --accent-glow: rgba(0, 212, 255, 0.15);
-            --text: #e0e0e0;
-            --text-muted: #888888;
-            --border: #1f1f1f;
-            --card: #0d0d0d;
+            --primary: #0a0e1a;
+            --secondary: #0d1321;
+            --accent: #f5a623;
+            --accent-blue: #1e4db5;
+            --accent-glow: rgba(245, 166, 35, 0.12);
+            --accent-blue-glow: rgba(30, 77, 181, 0.2);
+            --text: #e8ecf1;
+            --text-muted: #8892a0;
+            --border: #1a2340;
+            --card: #0d1321;
         }
 
         * {
@@ -39,7 +42,7 @@
             background: var(--primary);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--accent);
+            background: linear-gradient(180deg, var(--accent-blue), var(--accent));
             border-radius: 4px;
         }
 
@@ -47,27 +50,36 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.2rem 5%;
+            padding: 0.8rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(10, 14, 26, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text);
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
+            text-decoration: none;
         }
 
-        .logo span {
+        .logo img {
+            height: 45px;
+            width: auto;
+            border-radius: 8px;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .logo-text span {
             color: var(--accent);
         }
 
@@ -97,7 +109,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--accent-blue));
             transition: width 0.3s;
         }
 
@@ -132,7 +144,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 50%);
+            background: radial-gradient(circle at 50% 50%, var(--accent-blue-glow) 0%, transparent 50%);
             animation: pulse 8s ease-in-out infinite;
         }
 
@@ -147,6 +159,14 @@
             max-width: 900px;
         }
 
+        .hero-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(30, 77, 181, 0.3);
+        }
+
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -157,7 +177,7 @@
             font-size: 0.85rem;
             color: var(--accent);
             margin-bottom: 2rem;
-            background: rgba(0, 212, 255, 0.05);
+            background: rgba(245, 166, 35, 0.08);
         }
 
         .hero-badge .dot {
@@ -182,7 +202,7 @@
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--accent), #0088cc);
+            background: linear-gradient(135deg, var(--accent), var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -218,13 +238,13 @@
         }
 
         .btn-primary {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #d48a1a);
             color: var(--primary);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(245, 166, 35, 0.3);
         }
 
         .btn-secondary {
@@ -234,8 +254,8 @@
         }
 
         .btn-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
         }
 
         .stats-bar {
@@ -256,7 +276,10 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: 800;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             display: block;
         }
 
@@ -325,7 +348,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent), transparent);
+            background: linear-gradient(90deg, var(--accent), var(--accent-blue));
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.3s;
@@ -336,15 +359,15 @@
         }
 
         .service-card:hover {
-            border-color: var(--accent);
+            border-color: var(--accent-blue);
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 40px rgba(30, 77, 181, 0.15);
         }
 
         .service-icon {
             width: 60px;
             height: 60px;
-            background: var(--accent-glow);
+            background: linear-gradient(135deg, var(--accent-glow), var(--accent-blue-glow));
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -399,14 +422,14 @@
         }
 
         .project-card:hover {
-            border-color: var(--accent);
+            border-color: var(--accent-blue);
             transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px rgba(30, 77, 181, 0.2);
         }
 
         .project-image {
             height: 220px;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            background: linear-gradient(135deg, #0a0e1a 0%, #0f1a3d 50%, #0a0e1a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -423,8 +446,8 @@
                 45deg,
                 transparent,
                 transparent 10px,
-                rgba(0, 212, 255, 0.03) 10px,
-                rgba(0, 212, 255, 0.03) 20px
+                rgba(30, 77, 181, 0.04) 10px,
+                rgba(30, 77, 181, 0.04) 20px
             );
             animation: slide 20s linear infinite;
         }
@@ -436,8 +459,8 @@
 
         .project-image i {
             font-size: 3rem;
-            color: var(--accent);
-            opacity: 0.3;
+            color: var(--accent-blue);
+            opacity: 0.4;
             position: relative;
             z-index: 1;
         }
@@ -475,11 +498,11 @@
         .project-type {
             display: inline-block;
             padding: 0.3rem 0.8rem;
-            background: var(--accent-glow);
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            background: var(--accent-blue-glow);
+            border: 1px solid rgba(30, 77, 181, 0.3);
             border-radius: 50px;
             font-size: 0.75rem;
-            color: var(--accent);
+            color: var(--accent-blue);
             margin-bottom: 1rem;
         }
 
@@ -599,7 +622,7 @@
         }
 
         .contact-btn:hover {
-            border-color: var(--accent);
+            border-color: var(--accent-blue);
             color: var(--accent);
             transform: translateY(-2px);
         }
@@ -615,9 +638,29 @@
             font-size: 0.9rem;
         }
 
-        footer .logo {
+        .footer-logo {
+            display: flex;
+            align-items: center;
             justify-content: center;
+            gap: 0.8rem;
             margin-bottom: 1rem;
+            text-decoration: none;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            border-radius: 8px;
+        }
+
+        .footer-logo-text {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .footer-logo-text span {
+            color: var(--accent);
         }
 
         @media (max-width: 768px) {
@@ -627,6 +670,10 @@
 
             .mobile-menu-btn {
                 display: block;
+            }
+
+            .logo-text {
+                display: none;
             }
 
             .stats-bar {
@@ -655,6 +702,10 @@
             .process-step:not(:last-child)::after {
                 display: none;
             }
+
+            .hero-logo {
+                width: 90px;
+            }
         }
 
         .fade-in {
@@ -675,8 +726,8 @@
 
     <nav>
         <a href="#" class="logo">
-            <i class="fas fa-bolt"></i>
-            Stark<span>Technologies</span>
+            <img src="https://res.cloudinary.com/dq7fpxfbc/image/upload/v1774094269/logo2_ago4ay.jpg" alt="Stark Technologies">
+            <span class="logo-text">Stark<span>Technologies</span></span>
         </a>
         <ul class="nav-links">
             <li><a href="#services">Services</a></li>
@@ -689,6 +740,7 @@
 
     <section class="hero">
         <div class="hero-content">
+            <img src="https://res.cloudinary.com/dq7fpxfbc/image/upload/v1774094269/logo2_ago4ay.jpg" alt="Stark Technologies" class="hero-logo">
             <div class="hero-badge">
                 <span class="dot"></span>
                 Available for new projects
@@ -919,9 +971,9 @@
     </section>
 
     <footer>
-        <a href="#" class="logo">
-            <i class="fas fa-bolt"></i>
-            Stark<span>Technologies</span>
+        <a href="#" class="footer-logo">
+            <img src="https://res.cloudinary.com/dq7fpxfbc/image/upload/v1774094269/logo2_ago4ay.jpg" alt="Stark Technologies">
+            <span class="footer-logo-text">Stark<span>Technologies</span></span>
         </a>
         <p>&copy; 2026 Stark Technologies. All rights reserved. Built with precision.</p>
     </footer>
