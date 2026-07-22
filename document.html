@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PhD Dissertation Proposal - Comprehensive Version</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 18mm 20mm 18mm;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #1a1a1a;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header-container {
+            border-bottom: 2.5px solid #0f2942;
+            padding-bottom: 14px;
+            margin-bottom: 22px;
+        }
+
+        .doc-type {
+            font-family: Arial, sans-serif;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #1a568c;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        h1 {
+            font-family: Arial, sans-serif;
+            font-size: 16pt;
+            color: #0f2942;
+            margin: 0 0 8px 0;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+
+        .meta-info {
+            font-size: 9.5pt;
+            color: #4a5568;
+            margin-top: 6px;
+        }
+
+        .meta-info span {
+            margin-right: 18px;
+        }
+
+        h2 {
+            font-family: Arial, sans-serif;
+            font-size: 11.5pt;
+            color: #0f2942;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1.5px solid #cbd5e0;
+            padding-bottom: 4px;
+            margin-top: 22px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .lit-card {
+            background-color: #f8fafc;
+            border-left: 4px solid #1a568c;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+        }
+
+        .lit-title {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 3px;
+            font-size: 10.5pt;
+        }
+
+        .lit-citation {
+            font-style: italic;
+            font-size: 9pt;
+            color: #4a5568;
+            margin-bottom: 6px;
+        }
+
+        .gap-box {
+            margin-top: 6px;
+            font-size: 9.5pt;
+            background-color: #fffaf0;
+            border: 1px solid #feebc8;
+            padding: 8px 10px;
+            border-radius: 4px;
+        }
+
+        .gap-label {
+            font-weight: bold;
+            color: #c05621;
+        }
+
+        .method-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 14px;
+            font-size: 9pt;
+        }
+
+        .method-table th, .method-table td {
+            border: 1px solid #cbd5e0;
+            padding: 7px 9px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .method-table th {
+            background-color: #edf2f7;
+            color: #0f2942;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .formula-box {
+            background-color: #f7fafc;
+            border: 1px dashed #cbd5e0;
+            padding: 10px 14px;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .risk-subcard {
+            background-color: #f4f7f6;
+            border: 1px solid #d1d5db;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .risk-subcard-title {
+            font-weight: bold;
+            color: #0f2942;
+            font-size: 10pt;
+            margin-bottom: 4px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <div class="doc-type">PhD Level Research Proposal & Advanced Assignment Submission</div>
+        <h1>Hydrogeochemical Speciation, Quantitative Source Apportionment, Ecological Risk Assessment, Exposure Modeling, and Integrated Risk Management of Hexavalent Chromium in Aquatic Ecosystems</h1>
+        <div class="meta-info">
+            <span><strong>Course/Field:</strong> Environmental Toxicology, Hydrogeochemistry & Risk Mitigation</span>
+            <span><strong>Degree Level:</strong> PhD Candidate Level Assignment</span>
+        </div>
+    </div>
+
+    <h2>1. Systematic Literature Review & Identification of Research Gaps</h2>
+
+    <div class="lit-card">
+        <div class="lit-title">1. Speciation, Thermodynamics, and Kinetic Mobility Dynamics</div>
+        <div class="lit-citation">Kotas, J., & Stasicka, Z. (2000). Chromium occurrence, speciation and determination in the natural environment. <em>Environmental Pollution</em>, 107(3), 263-283.</div>
+        <p><strong>Synthesis:</strong> Kotas & Stasicka present an authoritative analysis of thermodynamic transitions governing Cr(III) and Cr(VI). The study documents how redox potential (Eh), pH, dissolved oxygen (DO), and organic ligands regulate chromium speciation.</p>
+        <div class="gap-box">
+            <span class="gap-label">Identified Research Gap:</span> Standard hydrogeochemical frameworks rely on equilibrium thermodynamic modeling. Natural systems lack empirical, field-calibrated kinetic rate constants for microbially mediated re-oxidation of sediment-bound Cr(III) to toxic Cr(VI) during seasonal oxygen flushes.
+        </div>
+    </div>
+
+    <div class="lit-card">
+        <div class="lit-title">2. Quantitative Source Apportionment via Multivariate Receptor Modeling</div>
+        <div class="lit-citation">Saha, R., Nandi, R., & Saha, B. (2011). Sources and toxicity of hexavalent chromium. <em>Journal of Coordination Chemistry</em>, 64(10), 1782-1806.</div>
+        <p><strong>Synthesis:</strong> Saha et al. evaluate industrial pathways (tanning, electroplating, textile dyeing) releasing untreated chromate effluents into aquatic systems.</p>
+        <div class="gap-box">
+            <span class="gap-label">Identified Research Gap:</span> Standard multivariate receptor models (e.g., US EPA PMF) utilize total chromium as a tracer, introducing misallocation errors between industrial point sources and natural geogenic background levels.
+        </div>
+    </div>
+
+    <h2>2. Statement of the Problem</h2>
+    <p>Hexavalent chromium (Cr(VI)) is a potent mutagen, teratogen, and Class-1 carcinogen. Industrial discharges chronically degrade freshwater systems. Current models struggle to differentiate geogenic background chromium from industrial sources, and human health risk models fail to capture secondary exposure routes like agricultural flood irrigation and subsistence fishing.</p>
+
+    <h2>3. Research Objectives</h2>
+    <ol>
+        <li>Isolate and quantify source apportionment of Cr(VI) using US EPA PMF 5.0 and stable isotopic tracer analysis (&delta;<sup>53</sup>Cr).</li>
+        <li>Establish spatial-temporal ecological risk profiles using Potential Ecological Risk Index (Er) and Sediment Quality Guidelines.</li>
+        <li>Quantify direct and secondary exposure pathways (dermal, oral, inhalation) using US EPA HHRA and Monte Carlo simulations.</li>
+        <li>Formulate a multi-tiered Risk Management & Remediation Framework.</li>
+    </ol>
+
+    <h2>4. Methodological Framework</h2>
+    <div class="formula-box">
+        <strong>Core Risk Equations:</strong><br>
+        • Potential Ecological Risk: <em>Er = Tr &times; Cf</em><br>
+        • Dermal Intake Rate: <em>ADD<sub>derm</sub> = (C<sub>water</sub> &times; SA &times; K<sub>p</sub> &times; ET &times; EF &times; ED &times; CF) / (BW &times; AT)</em><br>
+        • Non-Carcinogenic Hazard Index: <em>HI = &sum; (ADD / RfD)</em><br>
+        • Carcinogenic Risk: <em>ILCR = ADD &times; CSF</em>
+    </div>
+
+    <table class="method-table">
+        <thead>
+            <tr>
+                <th>Phase</th>
+                <th>Field & Analytical Methods</th>
+                <th>Target Outputs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Phase I: Speciation</strong></td>
+                <td>Stratified sampling, field buffering (pH &gt; 9.3), 1,5-Diphenylcarbazide spectrophotometry, ICP-MS.</td>
+                <td>High-resolution spatial-temporal speciation maps.</td>
+            </tr>
+            <tr>
+                <td><strong>Phase II: Apportionment</strong></td>
+                <td>EPA PMF 5.0 receptor modeling coupled with &delta;<sup>53</sup>Cr isotopic tracer mass balance.</td>
+                <td>Quantitative % allocation: Tannery, Electroplating, Agriculture, Geogenic.</td>
+            </tr>
+            <tr>
+                <td><strong>Phase III: Ecotoxicity</strong></td>
+                <td>BCF/BAF in bio-indicators, TEC/PEC sediment thresholds, <em>Daphnia magna</em> bioassays.</td>
+                <td>Spatial ecological hazard indices (Er, NIPI).</td>
+            </tr>
+            <tr>
+                <td><strong>Phase IV: Exposure</strong></td>
+                <td>Epidemiological surveys (n=250), US EPA HHRA equations, Monte Carlo 10,000-iteration runs.</td>
+                <td>Probabilistic HI and ILCR risk distributions.</td>
+            </tr>
+            <tr>
+                <td><strong>Phase V: Mitigation</strong></td>
+                <td>Evaluation of nZVI/NaHSO3 reduction agents, subsurface wetlands with <em>Typha latifolia</em>.</td>
+                <td>Actionable 3-tiered Risk Management Matrix.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>5. Risk Management Strategies</h2>
+    <div class="risk-subcard">
+        <div class="risk-subcard-title">Tier 1: Industrial Point-Source Control</div>
+        <p>Mandate chemical reduction (nZVI / NaHSO3) converting soluble Cr(VI) into insoluble Cr(OH)3 precipitates at pH 8.0–9.0 prior to discharge. Implement closed-loop chrome recovery systems in tanneries.</p>
+    </div>
+    <div class="risk-subcard">
+        <div class="risk-subcard-title">Tier 2: Primary Occupational Health</div>
+        <p>Enforce strict PPE compliance (nitrile gloves, N95/P100 respirators). Institute routine biological monitoring (urinary chromium) for manufacturing personnel every 6 months.</p>
+    </div>
+    <div class="risk-subcard">
+        <div class="risk-subcard-title">Tier 3: Secondary Community Protection</div>
+        <p>Construct subsurface flow wetlands planted with <em>Typha latifolia</em> at rural canal intakes to filter residual Cr(VI) before agricultural irrigation.</p>
+    </div>
+
+    <h2>6. References</h2>
+    <ol>
+        <li>Kotas, J., & Stasicka, Z. (2000). Chromium occurrence, speciation and determination in the natural environment. <em>Environmental Pollution</em>, 107(3), 263-283.</li>
+        <li>Saha, R., Nandi, R., & Saha, B. (2011). Sources and toxicity of hexavalent chromium. <em>Journal of Coordination Chemistry</em>, 64(10), 1782-1806.</li>
+        <li>Sharma, P., et al. (2012). Occupational health hazards among tannery workers. <em>Industrial Health</em>, 50(6), 523-531.</li>
+        <li>US EPA. (2011). <em>Exposure Factors Handbook: 2011 Edition</em>. U.S. Environmental Protection Agency, Washington, DC.</li>
+    </ol>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PhD Dissertation Proposal - Comprehensive Version</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 18mm 20mm 18mm;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #1a1a1a;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header-container {
+            border-bottom: 2.5px solid #0f2942;
+            padding-bottom: 14px;
+            margin-bottom: 22px;
+        }
+
+        .doc-type {
+            font-family: Arial, sans-serif;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #1a568c;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        h1 {
+            font-family: Arial, sans-serif;
+            font-size: 16pt;
+            color: #0f2942;
+            margin: 0 0 8px 0;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+
+        .meta-info {
+            font-size: 9.5pt;
+            color: #4a5568;
+            margin-top: 6px;
+        }
+
+        .meta-info span {
+            margin-right: 18px;
+        }
+
+        h2 {
+            font-family: Arial, sans-serif;
+            font-size: 11.5pt;
+            color: #0f2942;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1.5px solid #cbd5e0;
+            padding-bottom: 4px;
+            margin-top: 22px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .lit-card {
+            background-color: #f8fafc;
+            border-left: 4px solid #1a568c;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+        }
+
+        .lit-title {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 3px;
+            font-size: 10.5pt;
+        }
+
+        .lit-citation {
+            font-style: italic;
+            font-size: 9pt;
+            color: #4a5568;
+            margin-bottom: 6px;
+        }
+
+        .gap-box {
+            margin-top: 6px;
+            font-size: 9.5pt;
+            background-color: #fffaf0;
+            border: 1px solid #feebc8;
+            padding: 8px 10px;
+            border-radius: 4px;
+        }
+
+        .gap-label {
+            font-weight: bold;
+            color: #c05621;
+        }
+
+        .method-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 14px;
+            font-size: 9pt;
+        }
+
+        .method-table th, .method-table td {
+            border: 1px solid #cbd5e0;
+            padding: 7px 9px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .method-table th {
+            background-color: #edf2f7;
+            color: #0f2942;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .formula-box {
+            background-color: #f7fafc;
+            border: 1px dashed #cbd5e0;
+            padding: 10px 14px;
+            margin: 12px 0;
+            font-size: 10pt;
+        }
+
+        .risk-subcard {
+            background-color: #f4f7f6;
+            border: 1px solid #d1d5db;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .risk-subcard-title {
+            font-weight: bold;
+            color: #0f2942;
+            font-size: 10pt;
+            margin-bottom: 4px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <div class="doc-type">PhD Level Research Proposal & Advanced Assignment Submission</div>
+        <h1>Hydrogeochemical Speciation, Quantitative Source Apportionment, Ecological Risk Assessment, Exposure Modeling, and Integrated Risk Management of Hexavalent Chromium in Aquatic Ecosystems</h1>
+        <div class="meta-info">
+            <span><strong>Course/Field:</strong> Environmental Toxicology, Hydrogeochemistry & Risk Mitigation</span>
+            <span><strong>Degree Level:</strong> PhD Candidate Level Assignment</span>
+        </div>
+    </div>
+
+    <h2>1. Systematic Literature Review & Identification of Research Gaps</h2>
+
+    <div class="lit-card">
+        <div class="lit-title">1. Speciation, Thermodynamics, and Kinetic Mobility Dynamics</div>
+        <div class="lit-citation">Kotas, J., & Stasicka, Z. (2000). Chromium occurrence, speciation and determination in the natural environment. <em>Environmental Pollution</em>, 107(3), 263-283.</div>
+        <p><strong>Synthesis:</strong> Kotas & Stasicka present an authoritative analysis of thermodynamic transitions governing Cr(III) and Cr(VI). The study documents how redox potential (Eh), pH, dissolved oxygen (DO), and organic ligands regulate chromium speciation.</p>
+        <div class="gap-box">
+            <span class="gap-label">Identified Research Gap:</span> Standard hydrogeochemical frameworks rely on equilibrium thermodynamic modeling. Natural systems lack empirical, field-calibrated kinetic rate constants for microbially mediated re-oxidation of sediment-bound Cr(III) to toxic Cr(VI) during seasonal oxygen flushes.
+        </div>
+    </div>
+
+    <div class="lit-card">
+        <div class="lit-title">2. Quantitative Source Apportionment via Multivariate Receptor Modeling</div>
+        <div class="lit-citation">Saha, R., Nandi, R., & Saha, B. (2011). Sources and toxicity of hexavalent chromium. <em>Journal of Coordination Chemistry</em>, 64(10), 1782-1806.</div>
+        <p><strong>Synthesis:</strong> Saha et al. evaluate industrial pathways (tanning, electroplating, textile dyeing) releasing untreated chromate effluents into aquatic systems.</p>
+        <div class="gap-box">
+            <span class="gap-label">Identified Research Gap:</span> Standard multivariate receptor models (e.g., US EPA PMF) utilize total chromium as a tracer, introducing misallocation errors between industrial point sources and natural geogenic background levels.
+        </div>
+    </div>
+
+    <h2>2. Statement of the Problem</h2>
+    <p>Hexavalent chromium (Cr(VI)) is a potent mutagen, teratogen, and Class-1 carcinogen. Industrial discharges chronically degrade freshwater systems. Current models struggle to differentiate geogenic background chromium from industrial sources, and human health risk models fail to capture secondary exposure routes like agricultural flood irrigation and subsistence fishing.</p>
+
+    <h2>3. Research Objectives</h2>
+    <ol>
+        <li>Isolate and quantify source apportionment of Cr(VI) using US EPA PMF 5.0 and stable isotopic tracer analysis (&delta;<sup>53</sup>Cr).</li>
+        <li>Establish spatial-temporal ecological risk profiles using Potential Ecological Risk Index (Er) and Sediment Quality Guidelines.</li>
+        <li>Quantify direct and secondary exposure pathways (dermal, oral, inhalation) using US EPA HHRA and Monte Carlo simulations.</li>
+        <li>Formulate a multi-tiered Risk Management & Remediation Framework.</li>
+    </ol>
+
+    <h2>4. Methodological Framework</h2>
+    <div class="formula-box">
+        <strong>Core Risk Equations:</strong><br>
+        • Potential Ecological Risk: <em>Er = Tr &times; Cf</em><br>
+        • Dermal Intake Rate: <em>ADD<sub>derm</sub> = (C<sub>water</sub> &times; SA &times; K<sub>p</sub> &times; ET &times; EF &times; ED &times; CF) / (BW &times; AT)</em><br>
+        • Non-Carcinogenic Hazard Index: <em>HI = &sum; (ADD / RfD)</em><br>
+        • Carcinogenic Risk: <em>ILCR = ADD &times; CSF</em>
+    </div>
+
+    <table class="method-table">
+        <thead>
+            <tr>
+                <th>Phase</th>
+                <th>Field & Analytical Methods</th>
+                <th>Target Outputs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Phase I: Speciation</strong></td>
+                <td>Stratified sampling, field buffering (pH &gt; 9.3), 1,5-Diphenylcarbazide spectrophotometry, ICP-MS.</td>
+                <td>High-resolution spatial-temporal speciation maps.</td>
+            </tr>
+            <tr>
+                <td><strong>Phase II: Apportionment</strong></td>
+                <td>EPA PMF 5.0 receptor modeling coupled with &delta;<sup>53</sup>Cr isotopic tracer mass balance.</td>
+                <td>Quantitative % allocation: Tannery, Electroplating, Agriculture, Geogenic.</td>
+            </tr>
+            <tr>
+                <td><strong>Phase III: Ecotoxicity</strong></td>
+                <td>BCF/BAF in bio-indicators, TEC/PEC sediment thresholds, <em>Daphnia magna</em> bioassays.</td>
+                <td>Spatial ecological hazard indices (Er, NIPI).</td>
+            </tr>
+            <tr>
+                <td><strong>Phase IV: Exposure</strong></td>
+                <td>Epidemiological surveys (n=250), US EPA HHRA equations, Monte Carlo 10,000-iteration runs.</td>
+                <td>Probabilistic HI and ILCR risk distributions.</td>
+            </tr>
+            <tr>
+                <td><strong>Phase V: Mitigation</strong></td>
+                <td>Evaluation of nZVI/NaHSO3 reduction agents, subsurface wetlands with <em>Typha latifolia</em>.</td>
+                <td>Actionable 3-tiered Risk Management Matrix.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>5. Risk Management Strategies</h2>
+    <div class="risk-subcard">
+        <div class="risk-subcard-title">Tier 1: Industrial Point-Source Control</div>
+        <p>Mandate chemical reduction (nZVI / NaHSO3) converting soluble Cr(VI) into insoluble Cr(OH)3 precipitates at pH 8.0–9.0 prior to discharge. Implement closed-loop chrome recovery systems in tanneries.</p>
+    </div>
+    <div class="risk-subcard">
+        <div class="risk-subcard-title">Tier 2: Primary Occupational Health</div>
+        <p>Enforce strict PPE compliance (nitrile gloves, N95/P100 respirators). Institute routine biological monitoring (urinary chromium) for manufacturing personnel every 6 months.</p>
+    </div>
+    <div class="risk-subcard">
+        <div class="risk-subcard-title">Tier 3: Secondary Community Protection</div>
+        <p>Construct subsurface flow wetlands planted with <em>Typha latifolia</em> at rural canal intakes to filter residual Cr(VI) before agricultural irrigation.</p>
+    </div>
+
+    <h2>6. References</h2>
+    <ol>
+        <li>Kotas, J., & Stasicka, Z. (2000). Chromium occurrence, speciation and determination in the natural environment. <em>Environmental Pollution</em>, 107(3), 263-283.</li>
+        <li>Saha, R., Nandi, R., & Saha, B. (2011). Sources and toxicity of hexavalent chromium. <em>Journal of Coordination Chemistry</em>, 64(10), 1782-1806.</li>
+        <li>Sharma, P., et al. (2012). Occupational health hazards among tannery workers. <em>Industrial Health</em>, 50(6), 523-531.</li>
+        <li>US EPA. (2011). <em>Exposure Factors Handbook: 2011 Edition</em>. U.S. Environmental Protection Agency, Washington, DC.</li>
+    </ol>
+
+</body>
+</html>
