@@ -1,0 +1,16 @@
+# firmware secrets
+projects/mood-lamp/firmware/mood_lamp/config.h
+
+# local notes / build leftovers
+.pio/
+build/
+*.log
+.DS_Store
+
+# test harness deps (tests/run.sh installs these on first run)
+tests/node_modules/
+tests/package-lock.json
+
+# python bytecode
+__pycache__/
+*.pyc

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe Shift — live previews</title>
+<link rel="icon" type="image/jpeg" href="https://res.cloudinary.com/dq7fpxfbc/image/upload/v1782048983/IMG-20260621-WA0004_grnqp7.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0812; --panel: #12101c; --line: #241f31; --ink: #f1ecff; --dim: #9791ac;
+    --pink: #ff6ec7; --cyan: #6ff2ff; --green: #7dffb0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh; padding: clamp(1.5rem, 5vw, 4rem);
+    background:
+      radial-gradient(900px 500px at 20% -10%, rgba(255,110,199,.12), transparent 70%),
+      radial-gradient(700px 420px at 90% 100%, rgba(111,242,255,.10), transparent 65%),
+      var(--bg);
+    color: var(--ink); font: 15px/1.6 "Inter", system-ui, sans-serif;
+    display: grid; place-content: center; gap: 2rem;
+  }
+  header { max-width: 640px; display: grid; gap: .9rem; }
+  .tag {
+    font: 600 .64rem/1 "JetBrains Mono", monospace; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--pink); border: 1px solid #3a2140; border-radius: 999px; padding: .45rem .7rem;
+    justify-self: start; background: rgba(255,110,199,.06);
+  }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.05; letter-spacing: -.03em; font-weight: 800; }
+  h1 em { font-style: normal; background: linear-gradient(92deg, var(--cyan), var(--pink)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  p { color: var(--dim); max-width: 56ch; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+  .card {
+    display: grid; gap: .6rem; text-decoration: none; color: inherit;
+    border: 1px solid var(--line); border-radius: 16px; padding: 1.2rem; background: var(--panel);
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+  }
+  .card:hover { transform: translateY(-3px); border-color: #443255; box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+  .swatch { height: 64px; border-radius: 10px; border: 1px solid rgba(255,255,255,.1); }
+  .swatch.term {
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 1px, transparent 1px 3px),
+      radial-gradient(circle at 50% 50%, #7dffb0, #04120a 78%);
+  }
+  .swatch.vapor {
+    background:
+      linear-gradient(180deg, #1b0a3a, #b02d78 62%, #17092e 62%),
+      radial-gradient(circle at 50% 66%, #ffcf6e 0 12%, transparent 34%);
+    background-blend-mode: normal, screen;
+  }
+  .card h2 { font-size: 1rem; font-weight: 700; }
+  .card span { font: 500 .74rem/1.5 "JetBrains Mono", monospace; color: #6f6a86; }
+  .card b { color: var(--cyan); font-weight: 600; font-size: .82rem; }
+  footer { display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: .82rem; color: #6f6a86; border-top: 1px solid var(--line); padding-top: 1.2rem; }
+  footer a { color: #b9b2cf; text-decoration: none; border-bottom: 1px dotted #38304a; }
+  footer a:hover { color: #fff; }
+</style>
+</head>
+<body>
+  <header>
+    <span class="tag">Vibe Shift · Mv3 extension</span>
+    <h1>Reskin the web, <em>one stylesheet at a time</em>.</h1>
+    <p>
+      These previews are mocked pages wearing the extension's real theme CSS — the exact
+      files the content script injects. Install the extension to get the same thing on
+      live Wikipedia and X.
+    </p>
+  </header>
+
+  <div class="cards">
+    <a class="card" href="wikipedia.html">
+      <div class="swatch term"></div>
+      <h2>Wikipedia → Terminal</h2>
+      <span>Green phosphor, scanlines, blinking caret, dithered images, cat ./article</span>
+      <b>Open preview →</b>
+    </a>
+    <a class="card" href="x.html">
+      <div class="swatch vapor"></div>
+      <h2>X → Vaporwave Dream</h2>
+      <span>Sunset grid horizon, frosted columns, gradient serifs, glow on every control</span>
+      <b>Open preview →</b>
+    </a>
+  </div>
+
+  <footer>
+    <a href="../README.md">Install guide &amp; how it's built</a>
+    <a href="../../../index.html">Stark Technologies</a>
+  </footer>
+</body>
+</html>

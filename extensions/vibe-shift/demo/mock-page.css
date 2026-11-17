@@ -1,0 +1,82 @@
+/* ===========================================================
+   Minimal stand-in for Wikipedia's DOM so the theme CSS can be
+   demonstrated without bundling a scraped page. Class names are
+   the real ones (.infobox, .thumb, #toc, #firstHeading...) so
+   what you see here is what the extension actually restyles.
+   Deliberately unstyled-looking: the theme does the work.
+   =========================================================== */
+
+body {
+  margin: 0;
+}
+
+.mock-frame {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+}
+
+.mock-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.mock-logo { display: flex; align-items: center; }
+
+.mock-search { flex: 1; min-width: 180px; }
+.mock-search input { width: 100%; max-width: 420px; }
+
+.mock-user { font-size: 0.85rem; opacity: 0.8; }
+
+.mock-body {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.mock-side p { font-weight: 700; margin: 0 0 0.5rem; font-size: 0.85rem; }
+.mock-side ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; font-size: 0.85rem; }
+
+.mock-main h1 { margin: 0 0 0.25rem; }
+.mock-sub { margin: 0 0 1rem; font-size: 0.85rem; opacity: 0.75; }
+
+.hatnote { font-size: 0.85rem; margin-bottom: 1rem; }
+
+.infobox {
+  float: right;
+  width: 260px;
+  margin: 0 0 1rem 1.2rem;
+  font-size: 0.82rem;
+  border-collapse: collapse;
+}
+.infobox th, .infobox td { padding: 0.4rem 0.55rem; text-align: left; vertical-align: top; }
+.infobox th { text-align: center; }
+
+.toc { display: inline-block; padding: 0.6rem 0.9rem; margin: 0.6rem 0 1rem; }
+.toc ul { margin: 0; padding-left: 1rem; font-size: 0.85rem; }
+
+.thumb { float: left; margin: 0.3rem 1.2rem 1rem 0; max-width: 260px; }
+.thumbinner { padding: 6px; }
+.mock-photo {
+  width: 248px;
+  height: 150px;
+  background:
+    linear-gradient(180deg, #b9c6d6 0%, #e2d3b6 58%, #6d7f6a 58%, #46543f 100%);
+}
+.thumbcaption { font-size: 0.78rem; padding-top: 4px; }
+
+.mock-editsection { margin-top: 1.5rem; }
+
+.mock-foot { margin-top: 2rem; font-size: 0.8rem; }
+
+@media (max-width: 760px) {
+  .mock-body { grid-template-columns: 1fr; }
+  .mock-side { display: none; }
+  .infobox { float: none; width: 100%; margin: 0 0 1rem; }
+  .thumb { float: none; }
+  .mock-photo { width: 100%; }
+}

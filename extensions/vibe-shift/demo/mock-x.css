@@ -1,0 +1,81 @@
+/* ===========================================================
+   Minimal stand-in for X's DOM, using the real data-testid hooks
+   the theme targets. Keep this file plain — the theme does the
+   styling. If a rule here starts looking "designed", it belongs
+   in themes/vaporwave-dream.css instead.
+   =========================================================== */
+
+body { margin: 0; }
+
+.mock-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 600px) minmax(240px, 300px);
+  gap: 1.2rem;
+  padding: 0 1rem;
+}
+
+.mock-rail { padding: 1rem 0; }
+.mock-rail-logo { font-size: 1.4rem; margin-bottom: 1rem; }
+.mock-rail ul { list-style: none; margin: 0 0 1.2rem; padding: 0; display: grid; gap: 0.7rem; font-size: 1rem; }
+.mock-rail a { text-decoration: none; }
+
+.mock-post-btn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.7rem 1rem;
+  font-weight: 700;
+}
+
+.mock-col { min-width: 0; }
+
+.mock-topbar { padding: 0.9rem 1rem; }
+.mock-topbar h1 { margin: 0 0 0.5rem; font-size: 1.3rem; }
+.mock-tabs { display: flex; gap: 1.2rem; font-size: 0.85rem; opacity: 0.75; }
+
+.mock-compose {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.8rem 1rem;
+}
+.mock-compose input { flex: 1; padding: 0.5rem 0.7rem; font-size: 0.95rem; }
+.mock-compose button { padding: 0.5rem 1rem; font-weight: 600; }
+
+.mock-avatar {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  background: linear-gradient(140deg, #ffd08a, #ff6ec7 60%, #6ff2ff);
+}
+
+.mock-tweet { display: flex; gap: 0.7rem; padding: 0.9rem 1rem; }
+.mock-tweet-body { min-width: 0; flex: 1; }
+.mock-tweet [data-testid="User-Name"] { display: flex; gap: 0.5rem; align-items: baseline; font-size: 0.9rem; }
+.mock-tweet [data-testid="User-Name"] div { font-size: 0.82rem; opacity: 0.7; }
+
+.mock-pic { width: 100%; height: 180px; background: linear-gradient(160deg, #2a1146, #ff6ec7 70%, #ffcf6e); }
+
+.mock-actions { display: flex; gap: 1.6rem; margin-top: 0.6rem; font-size: 0.8rem; opacity: 0.8; }
+
+.mock-aside { padding: 0.8rem 0; display: grid; gap: 1rem; align-content: start; }
+.mock-panel { padding: 0.9rem 1rem; }
+.mock-panel h2 { margin: 0 0 0.7rem; font-size: 1rem; }
+.mock-panel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; font-size: 0.85rem; }
+.mock-panel li { display: grid; gap: 0.15rem; }
+.mock-panel li span { opacity: 0.7; font-size: 0.78rem; }
+.mock-wtf { margin: 0; font-size: 0.85rem; }
+.mock-wtf span { opacity: 0.7; }
+
+@media (max-width: 1000px) {
+  .mock-shell { grid-template-columns: 76px minmax(0, 1fr); }
+  .mock-rail ul { font-size: 0.8rem; }
+  .mock-aside { display: none; }
+}
+
+@media (max-width: 620px) {
+  .mock-shell { grid-template-columns: 1fr; }
+  .mock-rail { display: none; }
+}

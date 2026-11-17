@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infinite Story | BenTech</title>
+<link rel="icon" type="image/jpeg" href="https://res.cloudinary.com/dq7fpxfbc/image/upload/v1782048983/IMG-20260621-WA0004_grnqp7.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="story.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="bar">
+  <a class="back" href="../../index.html">&larr; Stark Technologies</a>
+  <div class="brand">Infinite <span>Story</span></div>
+  <a class="ghost" href="README.md">How it works &rarr;</a>
+</header>
+
+<main class="layout">
+
+  <!-- ---------------- reading column ---------------- -->
+  <section class="reader" id="stage">
+    <div class="reader-top">
+      <div class="status-row">
+        <span class="status" id="status" data-kind="">looking for ollama…</span>
+        <span class="counters">
+          <span><i>tension</i> <b id="tensionNum">0</b></span>
+          <span><i>scene</i> <b id="turnNum">0</b></span>
+        </span>
+      </div>
+      <div class="tension-track" aria-hidden="true"><div class="tension-fill" id="tensionFill"></div></div>
+    </div>
+
+    <div class="prose" id="prose" aria-live="polite">
+      <p class="placeholder">Pick a seed, choose how it should be retold, and press <b>Begin</b>. Every scene comes from your local model; the choices are yours.</p>
+    </div>
+
+    <div class="choices" id="choices"></div>
+  </section>
+
+  <!-- ---------------- control column ---------------- -->
+  <aside class="controls">
+
+    <div class="panel">
+      <label class="panel-label" for="seedInput">Seed</label>
+      <textarea id="seedInput" rows="3" placeholder="A rain-market in Makurdi where memories are sold by weight.">A rain-market in Makurdi where memories are sold by weight.</textarea>
+      <div class="seed-actions">
+        <button type="button" class="mini" id="diceBtn">Surprise me</button>
+        <span class="hint">or pick one below</span>
+      </div>
+      <div class="seed-chips" id="seedChips"></div>
+    </div>
+
+    <div class="panel">
+      <span class="panel-label">Retelling</span>
+      <div class="remix-row" id="remixRow"></div>
+      <p class="hint">This is the remix layer: the same seed, deliberately told differently. Compare two playthroughs of the same seed to see it move.</p>
+    </div>
+
+    <div class="panel">
+      <span class="panel-label">Local model</span>
+      <div class="model-row" id="modelRow" hidden>
+        <select id="modelSelect" aria-label="Local model"></select>
+      </div>
+      <p class="hint" id="modelHint">Talks to <code>127.0.0.1:11434</code> only. Nothing leaves your machine, and no API key is involved.</p>
+    </div>
+
+    <div class="panel actions">
+      <button class="begin" id="startBtn" disabled>Begin</button>
+      <div class="action-row">
+        <button type="button" class="mini" id="rerollBtn" disabled>Retell this beat</button>
+        <button type="button" class="mini" id="saveBtn" disabled>Save</button>
+        <label class="mini file" for="loadInput" role="button" tabindex="0">Load
+          <input type="file" id="loadInput" accept="application/json,.json" hidden>
+        </label>
+      </div>
+      <a href="#" class="studio-link" id="openStudio">Open story dial &rarr;</a>
+      <p class="hint keys"><kbd>1</kbd>–<kbd>4</kbd> choose &middot; <kbd>Esc</kbd> close panels</p>
+    </div>
+
+  </aside>
+</main>
+
+<!-- ---------------- studio drawer ---------------- -->
+<div class="overlay" id="overlay">
+  <div class="drawer" role="dialog" aria-label="Story dial and exports">
+    <div class="drawer-head">
+      <h2>Story dial</h2>
+      <button type="button" class="mini" data-close-studio>Close</button>
+    </div>
+    <p class="hint">The path your telling actually took, plus the same story as ink.js and as Twine passages. Copy either straight into your toolchain.</p>
+    <div id="studioBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="foot">
+  <p>Local LLM storytelling — Ollama writes, the runtime referees. <a href="../../index.html">Stark Technologies</a> &middot; <a href="README.md">Setup</a></p>
+</footer>
+
+<script src="js/ollama.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
