@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vibe Shift</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wordmark">VIBE<span>SHIFT</span></div>
+    <div class="tag">reskin the web</div>
+  </header>
+
+  <main id="themes" class="themes"></main>
+
+  <section class="knobs">
+    <label class="knob" for="intensity">
+      <span class="knob-label">Intensity</span>
+      <input id="intensity" type="range" min="0" max="1" step="0.05" value="0.8">
+      <output id="intensityOut" class="knob-out">80%</output>
+    </label>
+    <label class="knob-row" for="hud">
+      <span>Dream HUD</span>
+      <input id="hud" type="checkbox" checked>
+    </label>
+  </section>
+
+  <footer class="foot">
+    <span id="status">ready</span>
+    <a href="https://github.com/EasyPay-ng/BenTech" target="_blank" rel="noopener">source</a>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

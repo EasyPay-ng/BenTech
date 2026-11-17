@@ -1,0 +1,425 @@
+/* ===========================================================
+   VIBE SHIFT :: wikipedia-terminal
+   Wikipedia, rebuilt as a 1983 green-phosphor terminal.
+   Pure CSS. No markup is changed, so links, edit buttons and
+   search all keep working — they just look like a TTY.
+   =========================================================== */
+
+:root {
+  --vt-bg: #04120a;
+  --vt-bg-deep: #020a06;
+  --vt-fg: #7dffb0;
+  --vt-fg-dim: #3f9c68;
+  --vt-fg-bright: #c8ffdd;
+  --vt-amber: #ffcc66;
+  --vt-rule: rgba(125, 255, 176, 0.28);
+  --vt-glow: 0 0 6px rgba(125, 255, 176, 0.55);
+  --vt-font: "IBM Plex Mono", "SFMono-Regular", "Cascadia Mono", "Courier New", monospace;
+}
+
+/* --- global resets ---------------------------------------- */
+html {
+  background: var(--vt-bg-deep) !important;
+  scrollbar-color: var(--vt-fg-dim) var(--vt-bg-deep);
+  scrollbar-width: thin;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(125, 255, 176, 0.07), transparent 60%),
+    var(--vt-bg) !important;
+  color: var(--vt-fg) !important;
+  font-family: var(--vt-font) !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0.01em;
+  text-shadow: var(--vt-glow);
+}
+
+body::after {
+  /* CRT scanlines + vignette, painted on top of everything */
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2147483647;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.22) 0px,
+      rgba(0, 0, 0, 0.22) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+  mix-blend-mode: multiply;
+  opacity: 0.75;
+}
+
+* {
+  font-family: var(--vt-font) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* --- links ------------------------------------------------ */
+a,
+a:visited,
+a.new {
+  color: var(--vt-fg-bright) !important;
+  text-decoration: none !important;
+  border-bottom: 1px dotted var(--vt-rule);
+}
+
+a:hover,
+a:focus {
+  color: var(--vt-bg) !important;
+  background: var(--vt-fg) !important;
+  border-bottom-color: transparent !important;
+  text-shadow: none;
+}
+
+a:visited::after {
+  content: " *";
+  color: var(--vt-amber);
+}
+
+/* --- chrome: header, sidebar, search ---------------------- */
+header,
+.vector-header,
+.vector-header-container,
+.mw-header,
+#mw-head,
+#mw-navigation,
+#p-namespaces,
+#p-views,
+#p-cactions,
+.vector-page-toolbar,
+.vector-toc,
+#vector-toc-pinned-container,
+.vector-sticky-header,
+.mw-portlet,
+#footer,
+.mw-footer,
+.mw-footer-container {
+  background: transparent !important;
+  border-color: var(--vt-rule) !important;
+  color: var(--vt-fg-dim) !important;
+}
+
+.vector-header,
+.mw-header,
+#mw-head {
+  border-bottom: 1px solid var(--vt-rule) !important;
+}
+
+.vector-header::before,
+#mw-head::before {
+  content: "[ root@wikipedia:~ ]$ open ";
+  color: var(--vt-fg-dim);
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  align-self: center;
+  white-space: nowrap;
+}
+
+.vector-logo,
+.mw-logo,
+#p-logo,
+.vector-header .mw-logo-icon {
+  filter: sepia(1) saturate(6) hue-rotate(78deg) brightness(1.25) contrast(1.4) !important;
+}
+
+input,
+textarea,
+select,
+.cdx-text-input__input,
+#searchInput,
+.vector-search-box-input {
+  background: var(--vt-bg-deep) !important;
+  color: var(--vt-fg) !important;
+  border: 1px solid var(--vt-rule) !important;
+  padding: 0.35rem 0.5rem !important;
+  caret-color: var(--vt-fg);
+  text-shadow: var(--vt-glow);
+}
+
+input::placeholder {
+  color: var(--vt-fg-dim) !important;
+}
+
+input:focus,
+textarea:focus {
+  outline: none !important;
+  border-color: var(--vt-fg) !important;
+  box-shadow: 0 0 0 1px var(--vt-fg), 0 0 18px rgba(125, 255, 176, 0.25) !important;
+}
+
+button,
+.vector-button,
+.cdx-button,
+.oo-ui-buttonElement-button,
+.mw-ui-button {
+  background: var(--vt-bg-deep) !important;
+  color: var(--vt-fg) !important;
+  border: 1px solid var(--vt-rule) !important;
+  text-shadow: none;
+}
+
+button:hover,
+.cdx-button:hover,
+.oo-ui-buttonElement-button:hover {
+  background: var(--vt-fg) !important;
+  color: var(--vt-bg-deep) !important;
+  text-shadow: none;
+}
+
+/* --- content shell --------------------------------------- */
+.mw-body,
+#content,
+#bodyContent,
+.mw-parser-output,
+.vector-body,
+#mw-content-text,
+.vector-page-titlebar,
+.mw-page-container {
+  background: transparent !important;
+  color: var(--vt-fg) !important;
+  border-color: var(--vt-rule) !important;
+}
+
+.mw-page-container,
+#content {
+  max-width: 82ch !important;
+}
+
+.mw-body,
+#content {
+  border: 1px solid var(--vt-rule) !important;
+  padding: 1.5rem 2rem !important;
+  margin-top: 1rem !important;
+}
+
+/* fake shell prompt above the article title */
+#firstHeading,
+.firstHeading {
+  color: var(--vt-fg-bright) !important;
+  font-family: var(--vt-font) !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.02em !important;
+  border-bottom: 1px solid var(--vt-rule) !important;
+  padding-bottom: 0.5rem !important;
+  margin-bottom: 1rem !important;
+  text-transform: uppercase;
+}
+
+#firstHeading::before,
+.firstHeading::before {
+  content: "cat ";
+  color: var(--vt-fg-dim);
+  text-transform: none;
+}
+
+#firstHeading::after,
+.firstHeading::after {
+  content: " _";
+  color: var(--vt-fg);
+  animation: vt-caret 1.1s steps(1) infinite;
+  text-transform: none;
+}
+
+@keyframes vt-caret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+h2, h3, h4, h5, h6 {
+  color: var(--vt-fg-bright) !important;
+  border-bottom: 1px solid var(--vt-rule) !important;
+  font-weight: 700 !important;
+  margin-top: 1.6rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+h2 .mw-headline::before,
+h3 .mw-headline::before {
+  content: "## ";
+  color: var(--vt-fg-dim);
+}
+
+p, li, dd, dt, td, th, blockquote {
+  color: var(--vt-fg) !important;
+}
+
+b, strong {
+  color: var(--vt-fg-bright) !important;
+}
+
+i, em {
+  color: var(--vt-amber) !important;
+  font-style: italic;
+}
+
+/* --- boxes, tables, infoboxes ---------------------------- */
+table,
+.infobox,
+.sidebar,
+.navbox,
+.vertical-navbox,
+.mw-collapsible,
+.toc,
+#toc,
+.thumb,
+.thumbinner,
+.gallerybox,
+.ambox,
+.hatnote,
+.mbox,
+.mw-message-box,
+blockquote {
+  background: var(--vt-bg-deep) !important;
+  border: 1px solid var(--vt-rule) !important;
+  color: var(--vt-fg) !important;
+}
+
+table th,
+.infobox th,
+.infobox-header {
+  background: rgba(125, 255, 176, 0.08) !important;
+  color: var(--vt-fg-bright) !important;
+  border-bottom: 1px solid var(--vt-rule) !important;
+}
+
+.infobox-title,
+.infobox-above {
+  color: var(--vt-fg-bright) !important;
+  border-bottom: 1px solid var(--vt-rule) !important;
+}
+
+#toc,
+.toc {
+  padding: 0.75rem 1rem !important;
+}
+
+#toc::before,
+.toc::before {
+  content: "ls -l ./contents\n";
+  white-space: pre;
+  color: var(--vt-fg-dim);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+#toc li,
+.toc li,
+.tocnumber {
+  color: var(--vt-fg-dim) !important;
+}
+
+.hatnote,
+.ambox {
+  font-size: 0.85rem !important;
+  border-left: 3px solid var(--vt-amber) !important;
+  padding: 0.5rem 0.75rem !important;
+}
+
+/* --- images: dither them into the palette ----------------- */
+img {
+  filter: grayscale(1) sepia(1) saturate(4.5) hue-rotate(78deg) contrast(1.25) !important;
+  opacity: 0.92;
+  border: 1px solid var(--vt-rule) !important;
+  background: var(--vt-bg-deep) !important;
+}
+
+figure:hover img,
+.thumb:hover img {
+  opacity: 1;
+  filter: grayscale(1) sepia(1) saturate(6) hue-rotate(78deg) contrast(1.5) !important;
+}
+
+figcaption,
+.thumbcaption,
+.thumbcaption *,
+.mw-caption {
+  color: var(--vt-fg-dim) !important;
+  font-size: 0.8rem !important;
+}
+
+figcaption::before {
+  content: "// ";
+  color: var(--vt-rule);
+}
+
+/* --- footer / edit links --------------------------------- */
+#footer,
+.mw-footer {
+  border-top: 1px solid var(--vt-rule) !important;
+  font-size: 0.78rem !important;
+}
+
+.mw-editsection,
+.mw-editsection a {
+  color: var(--vt-fg-dim) !important;
+  font-size: 0.7rem !important;
+  border: none !important;
+}
+
+.mw-editsection::before {
+  content: "[";
+  color: var(--vt-rule);
+}
+.mw-editsection::after {
+  content: "]";
+  color: var(--vt-rule);
+}
+
+/* selection + scrollbar */
+::selection {
+  background: var(--vt-fg) !important;
+  color: var(--vt-bg-deep) !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--vt-bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--vt-fg-dim);
+  border: 2px solid var(--vt-bg-deep);
+}
+
+/* --- accessibility ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  #firstHeading::after,
+  .firstHeading::after {
+    animation: none !important;
+    opacity: 1;
+  }
+  * {
+    transition: none !important;
+  }
+}
+
+/* Users who need higher contrast get a brighter phosphor and no
+   scanline overlay — legibility beats the aesthetic. */
+@media (prefers-contrast: more) {
+  :root {
+    --vt-fg: #b6ffd2;
+    --vt-fg-dim: #86dca8;
+    --vt-fg-bright: #ffffff;
+    --vt-rule: rgba(182, 255, 210, 0.55);
+  }
+  body::after {
+    background: none;
+    opacity: 0;
+  }
+  body {
+    text-shadow: none;
+  }
+}

@@ -1,0 +1,213 @@
+// GENERATED FILE — do not edit.
+// Source: projects/mood-lamp/palettes.json
+// Regenerate: python3 projects/mood-lamp/tools/build_palettes.py
+// Plain global (not an ES module) so the simulator also works
+// when opened straight off disk with file://.
+window.MOODLAMP = {
+  "version": 3,
+  "palettes": [
+    {
+      "id": "dawn",
+      "label": "Dawn",
+      "hours": [
+        5,
+        8
+      ],
+      "colors": [
+        "#2b1b4d",
+        "#8f4a8a",
+        "#ff8a6b",
+        "#ffd08a"
+      ],
+      "speed": 6,
+      "intensity": 90,
+      "wledPalette": 19
+    },
+    {
+      "id": "morning",
+      "label": "Morning",
+      "hours": [
+        8,
+        11
+      ],
+      "colors": [
+        "#fff3d6",
+        "#ffe3a3",
+        "#c9f2ff",
+        "#fffaf0"
+      ],
+      "speed": 12,
+      "intensity": 200,
+      "wledPalette": 38
+    },
+    {
+      "id": "focus",
+      "label": "Focus",
+      "hours": [
+        11,
+        16
+      ],
+      "colors": [
+        "#e8f4ff",
+        "#b7d8ff",
+        "#ffffff",
+        "#a8cfff"
+      ],
+      "speed": 4,
+      "intensity": 215,
+      "wledPalette": 37
+    },
+    {
+      "id": "golden",
+      "label": "Golden Hour",
+      "hours": [
+        16,
+        19
+      ],
+      "colors": [
+        "#ffb347",
+        "#ff7a3d",
+        "#ffd98a",
+        "#c2410c"
+      ],
+      "speed": 9,
+      "intensity": 170,
+      "wledPalette": 10
+    },
+    {
+      "id": "dusk",
+      "label": "Dusk",
+      "hours": [
+        19,
+        21
+      ],
+      "colors": [
+        "#7b2d8b",
+        "#ff5f9e",
+        "#3b1e63",
+        "#ffa8c8"
+      ],
+      "speed": 14,
+      "intensity": 120,
+      "wledPalette": 13
+    },
+    {
+      "id": "wind-down",
+      "label": "Wind Down",
+      "hours": [
+        21,
+        23
+      ],
+      "colors": [
+        "#241447",
+        "#4b2a72",
+        "#8a5aa8",
+        "#2a1a3d"
+      ],
+      "speed": 8,
+      "intensity": 70,
+      "wledPalette": 12
+    },
+    {
+      "id": "night",
+      "label": "Night",
+      "hours": [
+        23,
+        5
+      ],
+      "colors": [
+        "#0b1026",
+        "#1b2a5e",
+        "#2f4a8c",
+        "#090d1c"
+      ],
+      "speed": 3,
+      "intensity": 28,
+      "wledPalette": 14
+    }
+  ],
+  "calendarMoods": [
+    {
+      "id": "meeting",
+      "label": "In a meeting",
+      "match": [
+        "meeting",
+        "standup",
+        "stand-up",
+        "sync",
+        "call",
+        "interview",
+        "1:1",
+        "review",
+        "class",
+        "lecture"
+      ],
+      "palette": "focus",
+      "intensity": 190,
+      "note": "Neutral white. So your face is lit, not your walls."
+    },
+    {
+      "id": "deepwork",
+      "label": "Deep work",
+      "match": [
+        "focus",
+        "deep work",
+        "writing",
+        "study",
+        "revision",
+        "deadline",
+        "sprint"
+      ],
+      "palette": "morning",
+      "intensity": 205,
+      "note": "Warm-cool mix that keeps the room awake without glare."
+    },
+    {
+      "id": "workout",
+      "label": "Workout",
+      "match": [
+        "gym",
+        "run",
+        "workout",
+        "training",
+        "football",
+        "match",
+        "hiit"
+      ],
+      "palette": "golden",
+      "intensity": 220,
+      "note": "High drive, fast chase \u2014 the room reads 'go'."
+    },
+    {
+      "id": "social",
+      "label": "Social",
+      "match": [
+        "birthday",
+        "party",
+        "dinner",
+        "hangout",
+        "wedding",
+        "celebration",
+        "drinks"
+      ],
+      "palette": "dusk",
+      "intensity": 150,
+      "note": "Pink/violet drift. Party mode lives here."
+    },
+    {
+      "id": "rest",
+      "label": "Rest",
+      "match": [
+        "sleep",
+        "nap",
+        "rest",
+        "therapy",
+        "meditation",
+        "quiet"
+      ],
+      "palette": "wind-down",
+      "intensity": 60,
+      "note": "Low and amber-free. Nothing here wakes you up."
+    }
+  ]
+};

@@ -405,6 +405,20 @@
             color: var(--text-muted);
         }
 
+        .experiments-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .experiments-grid .service-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .experiments-grid .service-tags {
+            margin-top: auto;
+            padding-top: 1.2rem;
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -1004,6 +1018,44 @@
                 <h3>Image to PDF Builder</h3>
                 <p>Arrange images into page order and export them as a custom PDF directly in your browser.</p>
                 <div class="service-tags"><span class="service-tag">Open PDF Builder <i class="fas fa-arrow-right"></i></span></div>
+            </a>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <span class="section-tag">Experiments</span>
+            <h2>Things We're Building For Fun</h2>
+            <p>Small, strange, working prototypes — shipped in the open</p>
+        </div>
+        <div class="services-grid experiments-grid">
+            <a href="projects/mood-lamp/simulator/index.html" class="service-card" style="text-decoration:none;color:inherit;">
+                <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Mood Lamp Studio</h3>
+                <p>An ESP32 + WLED lamp that reads the hour and your calendar. Drag the clock, add a meeting, tap the lamp — the firmware's palette logic, live in your browser.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Open simulator <i class="fas fa-arrow-right"></i></span>
+                    <span class="service-tag">ESP32</span>
+                    <span class="service-tag">WLED</span>
+                </div>
+            </a>
+            <a href="projects/infinite-story/index.html" class="service-card" style="text-decoration:none;color:inherit;">
+                <div class="service-icon"><i class="fas fa-book-open"></i></div>
+                <h3>Infinite Story</h3>
+                <p>Choice-based narratives written by a local LLM, with a runtime that refuses dead ends and remixes the telling each pass. Exports straight to ink.js and Twine.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Play <i class="fas fa-arrow-right"></i></span>
+                    <span class="service-tag">Ollama</span>
+                    <span class="service-tag">ink.js</span>
+                </div>
+            </a>
+            <a href="extensions/vibe-shift/demo/index.html" class="service-card" style="text-decoration:none;color:inherit;">
+                <div class="service-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                <h3>Vibe Shift Extension</h3>
+                <p>A browser extension that reskins the web: Wikipedia becomes a green-phosphor terminal, X becomes a vaporwave dream. Two themes, one toggle, no tracking.</p>
+                <div class="service-tags">
+                    <span class="service-tag">See it live <i class="fas fa-arrow-right"></i></span>
+                    <span class="service-tag">CSS injection</span>
+                    <span class="service-tag">MV3</span>
+                </div>
             </a>
         </div>
     </section>

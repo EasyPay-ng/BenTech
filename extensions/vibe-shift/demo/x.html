@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home / X (mock)</title>
+<!-- the REAL theme stylesheet, same file the extension injects -->
+<link rel="stylesheet" href="../themes/vaporwave-dream.css">
+<link rel="stylesheet" href="mock-x.css">
+</head>
+<body>
+<div id="react-root">
+  <div class="mock-shell" role="main">
+    <nav class="mock-rail" aria-label="Primary">
+      <div class="mock-rail-logo">𝕏</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Explore</a></li>
+        <li><a href="#">Notifications</a></li>
+        <li><a href="#">Messages</a></li>
+        <li><a href="#">Bookmarks</a></li>
+      </ul>
+      <a href="/compose/post" data-testid="SideNav_NewTweet_Button" class="mock-post-btn">Post</a>
+    </nav>
+
+    <div data-testid="primaryColumn" class="mock-col">
+      <div data-testid="TopNavBar" class="mock-topbar">
+        <h1>Home</h1>
+        <div class="mock-tabs"><span>For you</span><span>Following</span></div>
+      </div>
+
+      <div class="mock-compose">
+        <div class="mock-avatar" data-testid="Tweet-User-Avatar"></div>
+        <input type="text" placeholder="What is happening?!" aria-label="Compose post">
+        <button type="button" data-testid="tweetButtonInline">Post</button>
+      </div>
+
+      <article data-testid="tweet" class="mock-tweet">
+        <div class="mock-avatar" data-testid="Tweet-User-Avatar"></div>
+        <div class="mock-tweet-body">
+          <div data-testid="User-Name"><span>Tunde A.</span> <div dir="ltr">@tunde · 2h</div></div>
+          <div data-testid="tweetText">rewrote the same landing page four times and the fourth one
+          is just the first one with the confetti removed. growth.</div>
+          <div class="mock-actions">
+            <span data-testid="reply">💬 12</span>
+            <span data-testid="retweet">⇄ 44</span>
+            <span data-testid="like">♡ 310</span>
+            <span data-testid="bookmark">🔖</span>
+          </div>
+        </div>
+      </article>
+
+      <article data-testid="tweet" class="mock-tweet">
+        <div class="mock-avatar" data-testid="Tweet-User-Avatar"></div>
+        <div class="mock-tweet-body">
+          <div data-testid="User-Name"><span>Benue Builders</span> <div dir="ltr">@bentech · 5h</div></div>
+          <div data-testid="tweetText">shipped a mood lamp that reads my calendar. it turned white
+          during my standup and pink when the party started. no cloud, no app, one touch pad.</div>
+          <div data-testid="tweetPhoto"><div class="mock-pic"></div></div>
+          <div class="mock-actions">
+            <span data-testid="reply">💬 31</span>
+            <span data-testid="retweet">⇄ 96</span>
+            <span data-testid="like">♡ 812</span>
+            <span data-testid="share">↗</span>
+          </div>
+        </div>
+      </article>
+
+      <article data-testid="tweet" class="mock-tweet">
+        <div class="mock-avatar" data-testid="Tweet-User-Avatar"></div>
+        <div class="mock-tweet-body">
+          <div data-testid="User-Name"><span>night bus enjoyer</span> <div dir="ltr">@nightbus · 7h</div></div>
+          <div data-testid="tweetText">the story generator refused to let my character die.
+          turns out the runtime, not the model, decides what's possible. good.</div>
+          <div class="mock-actions">
+            <span data-testid="reply">💬 8</span>
+            <span data-testid="retweet">⇄ 19</span>
+            <span data-testid="like">♡ 205</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <aside data-testid="sidebarColumn" class="mock-aside">
+      <div class="mock-panel" aria-label="Timeline: Trending">
+        <h2>What's happening</h2>
+        <ul>
+          <li><b>#MoodLamp</b><span>4,120 posts</span></li>
+          <li><b>#infinite story</b><span>1,804 posts</span></li>
+          <li><b>Makurdi</b><span>Trending in Nigeria</span></li>
+        </ul>
+      </div>
+      <div class="mock-panel">
+        <h2>Who to follow</h2>
+        <p class="mock-wtf">BenTech <span>@bentech</span></p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="vibeshift-hud">
+    <span class="vs-dot"></span>
+    <span class="vs-wave"><i></i><i></i><i></i><i></i><i></i></span>
+    <span>vibe :: vaporwave dream</span>
+  </div>
+</div>
+</body>
+</html>
